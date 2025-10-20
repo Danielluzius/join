@@ -1,1 +1,33 @@
-<p>contacts works!</p>
+<div class="contacts-container">
+    <div class="contacts-list">
+        <button class="add-btn">Add new contact</button>
+        @for (contact of contacts; track contact.id) {
+        <div class="contact-list-item" [class.selected]="contact === selectedContact" (click)="selectContact(contact)">
+            <span class="avatar" [style.background]="contact === selectedContact ? '#ff9100' : '#bdbdbd'">
+                {{ getInitials(contact) }}
+            </span>
+            <div class="contact-info">
+                <div class="name">{{ contact.firstname }} {{ contact.lastname }}</div>
+                <div class="email">{{ contact.email }}</div>
+            </div>
+        </div>
+        }
+    </div>
+    @if (selectedContact) {
+    <div class="contact-details">
+        <div class="details-header">
+            <span class="avatar big">{{ getInitials(selectedContact!) }}</span>
+            <span class="details-name">{{ selectedContact!.firstname }} {{ selectedContact!.lastname }}</span>
+            <div class="details-actions">
+                <button>Edit</button>
+                <button>Delete</button>
+            </div>
+        </div>
+        <div class="details-info">
+            <div><strong>Email</strong><br><a href="mailto:{{selectedContact!.email}}">{{ selectedContact!.email }}</a>
+            </div>
+            <div><strong>Phone</strong><br>{{ selectedContact!.phone }}</div>
+        </div>
+    </div>
+    }
+</div>

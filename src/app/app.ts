@@ -1,6 +1,8 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { Firestore, collection, onSnapshot } from '@angular/fire/firestore';
+import { ContactService } from './core/services/db-contact-service';
+import { ContactHelper, Contact } from './core/interfaces/db-contact-interface';
 
 @Component({
   selector: 'app-root',
@@ -9,12 +11,20 @@ import { Firestore, collection, onSnapshot } from '@angular/fire/firestore';
   styleUrl: './app.scss'
 })
 export class App implements OnInit {
-  private firestore = inject(Firestore);
+  contacts: Contact[] = [];
 
-  ngOnInit() {
-    const contactsRef = collection(this.firestore, 'contacts');
-    onSnapshot(contactsRef, snapshot => {
-      snapshot.forEach(doc => console.log(doc.id, doc.data()));
-    });
+  private contactService = inject(ContactService);
+
+  async ngOnInit() {
+    this.contacts = await this.contactService.getAllContacts();
+
+
+    // Beispielcode um die email des kontaktes "0" auszugeben
+    if (this.contacts.length > 0) {
+      console.log(ContactHelper.getEmail(this.contacts[0]));
+    }
+
+
+
   }
 }

@@ -26,4 +26,8 @@ export class ContactHelper {
   static getFullName(contact: Contact): string {
     return `${contact.firstname} ${contact.lastname}`;
   }
+
+  static getAllData(contact: Contact): Contact {
+    return contact;
+  }
 }
