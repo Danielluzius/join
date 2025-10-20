@@ -1,0 +1,90 @@
+.header {
+  height: 96px;
+  background-color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 40px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
+  position: relative;
+  z-index: 10;
+}
+
+.header-title {
+  font-family: 'Inter', sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 120%;
+  color: #000000;
+  margin: 0;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.help-btn {
+  background: none;
+  border: none;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.2s ease;
+
+  .help-icon {
+    width: 20px;
+    height: 20px;
+    filter: brightness(0) saturate(100%) invert(72%) sepia(0%) saturate(0%) hue-rotate(161deg)
+      brightness(89%) contrast(87%);
+    transition: filter 0.2s ease;
+  }
+
+  &:hover .help-icon {
+    filter: none;
+    content: url('/assets/help-icon-hovered.png');
+  }
+}
+
+.user-avatar {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  border: 3px solid #2a3647;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  position: relative;
+  background: #ffffff;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    width: 48px;
+    height: 48px;
+    background: #29abe2;
+    border-radius: 50%;
+    z-index: 0;
+  }
+
+  .avatar-text {
+    position: relative;
+    z-index: 1;
+    color: #ffffff;
+  }
+
+  &:hover {
+    transform: scale(1.05);
+  }
+}

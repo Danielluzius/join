@@ -1,0 +1,20 @@
+.legal-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 40px 20px;
+
+  h1 {
+    font-size: 32px;
+    margin-bottom: 24px;
+    color: #2a3647;
+  }
+
+  .legal-content {
+    line-height: 1.6;
+    color: #666;
+
+    p {
+      margin-bottom: 16px;
+    }
+  }
+}

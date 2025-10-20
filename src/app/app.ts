@@ -1,20 +1,12 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { Firestore, collection, onSnapshot } from '@angular/fire/firestore';
+import { Header } from './shared/components/header/header';
+import { Navbar } from './shared/components/navbar/navbar';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, Header, Navbar],
   templateUrl: './app.html',
-  styleUrl: './app.scss'
+  styleUrl: './app.scss',
 })
-export class App implements OnInit {
-  private firestore = inject(Firestore);
-
-  ngOnInit() {
-    const contactsRef = collection(this.firestore, 'contacts');
-    onSnapshot(contactsRef, snapshot => {
-      snapshot.forEach(doc => console.log(doc.id, doc.data()));
-    });
-  }
-}
+export class App {}

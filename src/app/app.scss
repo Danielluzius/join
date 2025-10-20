@@ -1,0 +1,14 @@
+.main-content {
+  margin-left: 232px;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.content-area {
+  flex: 1;
+  overflow-y: auto;
+  padding: 40px;
+  background-color: #f6f7f8;
+}
