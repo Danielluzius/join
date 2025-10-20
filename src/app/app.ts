@@ -23,7 +23,7 @@ export class App implements OnInit {
     if (this.contacts.length > 0) {
       console.log(ContactHelper.getEmail(this.contacts[0]));
     }
-
+    //--------------------------------------------------------
 
 
   }
