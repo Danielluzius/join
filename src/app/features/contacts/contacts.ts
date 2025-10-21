@@ -31,4 +31,23 @@ export class Contacts implements OnInit {
       (contact.lastname?.charAt(0) || '')
     ).toUpperCase();
   }
+
+  colorPalette = [
+    '#FF7A00', // Orange
+    '#9327FF', // Purple
+    '#6E52FF', // Blue
+    '#FC71FF', // Pink
+    '#FFBB2B', // Yellow
+    '#1FD7C1', // Teal
+    '#462F8A', // Dark Purple
+    '#FF4646', // Red
+    '#00BEE8', // Light Blue
+    '#FF5EB3', // Light Pink
+    '#FF745E', // Coral
+    '#FFA35E', // Light Orange
+    '#FFC701', // Bright Yellow
+    '#0038FF', // Vivid Blue
+    '#C3FF2B', // Lime Green
+    '#FFE62B', // Bright Yellow
+  ];
 }
