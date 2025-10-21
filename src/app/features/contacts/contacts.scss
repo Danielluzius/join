@@ -42,6 +42,7 @@
 }
 
 .add-btn {
+  box-sizing: border-box;
   width: 352px;
   height: 56px;
   padding: 12px 16px;
@@ -49,6 +50,8 @@
   color: #ffffff;
   border: 1px solid #2a3647;
   border-radius: 10px;
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
   font-weight: 700;
   font-size: 21px;
   line-height: 120%;
@@ -58,6 +61,29 @@
   justify-content: center;
   align-items: center;
   gap: 16px;
+  transition: background 0.2s, box-shadow 0.2s, border-color 0.2s;
+
+  // Hover state - Hellblau mit Shadow
+  &:hover {
+    background: #29abe2;
+    border-color: #29abe2;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  }
+
+  // Active state - Sehr dunkelblau
+  &:active {
+    background: #091931;
+    border-color: #091931;
+    box-shadow: none;
+  }
+
+  img {
+    width: 32px;
+    height: 32px;
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+  }
 }
 
 .contact-list-item {
@@ -354,7 +380,8 @@
 
 .icon-btn:hover .action-icon {
   filter: none;
-  filter: brightness(0) saturate(100%) invert(32%) sepia(99%) saturate(749%) hue-rotate(181deg) brightness(95%) contrast(94%);
+  filter: brightness(0) saturate(100%) invert(32%) sepia(99%) saturate(749%) hue-rotate(181deg)
+    brightness(95%) contrast(94%);
 }
 
 @media (max-width: 900px) {
