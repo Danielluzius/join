@@ -1,6 +1,6 @@
 <div class="contacts-container">
     <div class="contacts-list">
-        <button class="add-btn">Add new contact</button>
+        <button (click)="openAddModal()" class="add-btn">Add new contact</button>
         @for (contact of contacts; track contact.id) {
         <div class="contact-list-item" [class.selected]="contact === selectedContact" (click)="selectContact(contact)">
             <span class="avatar" [style.background]="contact === selectedContact ? '#ff9100' : '#bdbdbd'">
@@ -27,6 +27,41 @@
             <div><strong>Email</strong><br><a href="mailto:{{selectedContact!.email}}">{{ selectedContact!.email }}</a>
             </div>
             <div><strong>Phone</strong><br>{{ selectedContact!.phone }}</div>
+        </div>
+    </div>
+    }
+
+    @if (showAddModal) {
+    <div class="modal-overlay">
+        <div class="modal">
+            <div class="modal-left">
+                <div class="left-text">
+                    <img class="join-img" src="assets/header-join-icon-vector.png" alt="">
+                    <h2>Add contact</h2>
+                    <p>Tasks are better with a team!</p>
+                    <div class="blue-line"></div>
+                </div>
+            </div>
+            <div class="modal-right">
+                <button class="close-btn" (click)="closeAddModal()">×</button>
+                <form (ngSubmit)="createContact()" autocomplete="off">
+                    <div class="placeholder">
+                    @if (errorMessage) {
+                    <div class="error-message">{{ errorMessage }}</div>
+                    }
+                    </div>
+                    <input type="text" placeholder="Name" [(ngModel)]="newContact.firstname" name="firstname"
+                        required />
+                    <input type="text" placeholder="Surname" [(ngModel)]="newContact.lastname" name="lastname"
+                        required />
+                    <input type="email" placeholder="Email" [(ngModel)]="newContact.email" name="email" required />
+                    <input type="text" placeholder="Phone" [(ngModel)]="newContact.phone" name="phone" required />
+                    <div class="modal-actions">
+                        <button type="button" class="secondary" (click)="closeAddModal()">Cancel</button>
+                        <button type="submit" class="primary">Create contact ✓</button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
     }
