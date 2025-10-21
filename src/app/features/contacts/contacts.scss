@@ -98,3 +98,28 @@
 .details-info div {
   margin-bottom: 16px;
 }
+
+letter-group {
+  margin-bottom: 24px;
+}
+
+.letter-header {
+  margin-bottom: 12px;
+}
+
+.letter {
+  display: inline-block;
+  font-size: 1.2em;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 8px;
+}
+
+.letter-divider {
+  width: 352px;
+  height: 0px;
+  border-radius: 3px;
+  opacity: 1;
+  border: 1px solid #ddd;
+  margin-top: 8px;
+}

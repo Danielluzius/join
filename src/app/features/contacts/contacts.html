@@ -1,18 +1,29 @@
 <div class="contacts-container">
     <div class="contacts-list">
         <button class="add-btn">Add new contact</button>
-        @for (contact of contacts; track contact.id) {
-        <div class="contact-list-item" [class.selected]="contact === selectedContact" (click)="selectContact(contact)">
+    
+        @for (group of groupedContacts; track group.letter) {
+        <div class="letter-group">
+          <div class="letter-header">
+            <span class="letter">{{ group.letter }}</span>
+            <div class="letter-divider"></div>
+          </div>
+    
+          @for (contact of group.contacts; track contact.id) {
+          <div class="contact-list-item" [class.selected]="contact === selectedContact" (click)="selectContact(contact)">
             <span class="avatar" [style.background]="getAvatarColor(contact)">
-                {{ getInitials(contact) }}
+              {{ getInitials(contact) }}
             </span>
             <div class="contact-info">
-                <div class="name">{{ contact.firstname }} {{ contact.lastname }}</div>
-                <div class="email">{{ contact.email }}</div>
+              <div class="name">{{ contact.firstname }} {{ contact.lastname }}</div>
+              <div class="email">{{ contact.email }}</div>
             </div>
+          </div>
+          }
         </div>
         }
-    </div>
+      </div>
+
     @if (selectedContact) {
     <div class="contact-details">
         <div class="details-header">
