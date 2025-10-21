@@ -32,8 +32,14 @@
                 getInitials(selectedContact!) }}</span>
             <span class="details-name">{{ selectedContact!.firstname }} {{ selectedContact!.lastname }}</span>
             <div class="details-actions">
-                <button (click)="openAddModal(selectedContact!)">Edit</button>
-                <button>Delete</button>
+                <button class="icon-btn" (click)="openAddModal(selectedContact!)">
+                    <img src="assets/edit.png" alt="Edit" class="action-icon" />
+                    Edit
+                </button>
+                <button class="icon-btn" (click)="deleteContact(selectedContact!)">
+                    <img src="assets/delete.png" alt="Delete" class="action-icon" />
+                    Delete
+                </button>
             </div>
         </div>
         <div class="details-info">

@@ -87,7 +87,6 @@
   margin-left: 8px;
   background: none;
   border: none;
-  color: #1976d2;
   cursor: pointer;
 }
 
@@ -247,6 +246,43 @@
   height: 20px;
   opacity: 0.7;
   pointer-events: none;
+}
+
+.details-actions {
+  display: flex;
+  gap: 16px;
+  margin-top: 8px;
+}
+
+.icon-btn {
+  display: inline-flex;
+  align-items: center;
+  background: none;
+  border: none;
+  color: #223047;
+  font-size: 1em;
+  cursor: pointer;
+  padding: 0;
+  gap: 6px;
+  transition: color 0.2s;
+}
+
+.icon-btn:hover {
+  color: #1976d2;
+}
+
+
+
+.action-icon {
+  width: 20px;
+  height: 20px;
+  margin-right: 4px;
+  filter: grayscale(100%);
+  transition: filter 0.2s;
+}
+
+.icon-btn:hover .action-icon {
+  filter: none;
 }
 
 @media (max-width: 900px) {

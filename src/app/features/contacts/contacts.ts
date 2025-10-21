@@ -1,7 +1,7 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { ContactService } from '../../core/services/db-contact-service';
 import { ContactHelper, Contact } from '../../core/interfaces/db-contact-interface';
-import { Firestore, collection, addDoc, doc, updateDoc } from '@angular/fire/firestore';
+import { Firestore, collection, addDoc, doc, updateDoc, deleteDoc } from '@angular/fire/firestore';
 import { FormsModule } from '@angular/forms';
 
 
@@ -41,7 +41,7 @@ export class Contacts implements OnInit {
 
   groupContactsByLetter(): { letter: string; contacts: Contact[] }[] {
     const groups: { [key: string]: Contact[] } = {};
-    
+
     this.contacts.forEach(contact => {
       const letter = contact.firstname.charAt(0).toUpperCase();
       if (!groups[letter]) {
@@ -49,7 +49,7 @@ export class Contacts implements OnInit {
       }
       groups[letter].push(contact);
     });
-    
+
     return Object.keys(groups)
       .sort()
       .map(letter => ({
@@ -63,7 +63,7 @@ export class Contacts implements OnInit {
   }
 
   getInitials(contact: Contact): string {
-      return (contact.firstname.charAt(0) ).toUpperCase();
+    return (contact.firstname.charAt(0)).toUpperCase();
   }
 
   colorPalette = [
@@ -88,11 +88,11 @@ export class Contacts implements OnInit {
   getAvatarColor(contact: Contact): string {
     let hash = 0;
     const idString = String(contact.id);
-    
+
     for (let i = 0; i < idString.length; i++) {
       hash = idString.charCodeAt(i) + ((hash << 5) - hash);
     }
-    
+
     const index = Math.abs(hash) % this.colorPalette.length;
     return this.colorPalette[index];
   }
@@ -116,41 +116,53 @@ export class Contacts implements OnInit {
   }
 
   async createContact() {
-  if (!this.newContact.firstname ||  !this.newContact.email || !this.newContact.phone) {
-    this.errorMessage = 'All Inputs are required.';
-    return;
-  }
-  this.errorMessage = '';
-  const contactsRef = collection(this.firestore, 'contacts');
-  const docRef = await addDoc(contactsRef, this.newContact);
-  const contact: Contact = { id: docRef.id, ...this.newContact as Contact };
-  this.contacts.push(contact);
-  this.selectedContact = contact;
-  this.closeAddModal();
-}
-
-async saveChanges() {
-  if (!this.newContact.firstname || !this.newContact.email || !this.newContact.phone) {
-    this.errorMessage = 'All Inputs are required.';
-    return;
-  }
-  this.errorMessage = '';
-  if (this.newContact.id) {
-    const contactRef = doc(this.firestore, 'contacts', this.newContact.id);
-    await updateDoc(contactRef, {
-      firstname: this.newContact.firstname,
-      email: this.newContact.email,
-      phone: this.newContact.phone,
-      lastname: this.newContact.lastname
-    });
-    const idx = this.contacts.findIndex(c => c.id === this.newContact.id);
-    if (idx > -1) {
-      this.contacts[idx] = { ...this.newContact } as Contact;
-      this.selectedContact = this.contacts[idx];
-      this.sortContactsAlphabetically();
-      this.groupedContacts = this.groupContactsByLetter();
+    if (!this.newContact.firstname || !this.newContact.email || !this.newContact.phone) {
+      this.errorMessage = 'All Inputs are required.';
+      return;
     }
+    this.errorMessage = '';
+    const contactsRef = collection(this.firestore, 'contacts');
+    const docRef = await addDoc(contactsRef, this.newContact);
+    const contact: Contact = { id: docRef.id, ...this.newContact as Contact };
+    this.contacts.push(contact);
+    this.selectedContact = contact;
     this.closeAddModal();
   }
-}
+
+  async saveChanges() {
+    if (!this.newContact.firstname || !this.newContact.email || !this.newContact.phone) {
+      this.errorMessage = 'All Inputs are required.';
+      return;
+    }
+    this.errorMessage = '';
+    if (this.newContact.id) {
+      const contactRef = doc(this.firestore, 'contacts', this.newContact.id);
+      await updateDoc(contactRef, {
+        firstname: this.newContact.firstname,
+        email: this.newContact.email,
+        phone: this.newContact.phone,
+        lastname: this.newContact.lastname
+      });
+      const idx = this.contacts.findIndex(c => c.id === this.newContact.id);
+      if (idx > -1) {
+        this.contacts[idx] = { ...this.newContact } as Contact;
+        this.selectedContact = this.contacts[idx];
+        this.sortContactsAlphabetically();
+        this.groupedContacts = this.groupContactsByLetter();
+      }
+      this.closeAddModal();
+    }
+  }
+
+  async deleteContact(contact: Contact) {
+    if (!contact.id) return;
+    const contactRef = doc(this.firestore, 'contacts', contact.id);
+    await deleteDoc(contactRef);
+    this.contacts = this.contacts.filter(c => c.id !== contact.id);
+    this.groupedContacts = this.groupContactsByLetter();
+    if (this.selectedContact?.id === contact.id) {
+      this.selectedContact = this.contacts.length > 0 ? this.contacts[0] : null;
+    }
+
+  }
 }
