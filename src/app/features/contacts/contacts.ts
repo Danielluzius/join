@@ -61,7 +61,7 @@ export class Contacts implements OnInit {
   }
 
   getInitials(contact: Contact): string {
-      return (contact.firstname.charAt(0) + contact.lastname.charAt(0)).toUpperCase();
+      return (contact.firstname.charAt(0) ).toUpperCase();
   }
 
   colorPalette = [
@@ -105,7 +105,7 @@ export class Contacts implements OnInit {
   }
 
   async createContact() {
-  if (!this.newContact.firstname || !this.newContact.lastname || !this.newContact.email || !this.newContact.phone) {
+  if (!this.newContact.firstname ||  !this.newContact.email || !this.newContact.phone) {
     this.errorMessage = 'All Inputs are required.';
     return;
   }

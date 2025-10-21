@@ -2,7 +2,7 @@ export interface Contact {
   id?: string;
   email: string;
   firstname: string;
-  lastname: string;
+  lastname?: string;
   phone: string;
 }
 
@@ -19,9 +19,7 @@ export class ContactHelper {
     return contact.firstname;
   }
 
-  static getLastname(contact: Contact): string {
-    return contact.lastname;
-  }
+  
 
   static getFullName(contact: Contact): string {
     return `${contact.firstname} ${contact.lastname}`;
