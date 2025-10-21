@@ -123,6 +123,7 @@ export class Contacts implements OnInit {
     const contact: Contact = { id: docRef.id, ...(this.newContact as Contact) };
     this.contacts.push(contact);
     this.selectedContact = contact;
+    await this.reloadContacts();
     this.closeAddModal();
   }
 
@@ -147,6 +148,7 @@ export class Contacts implements OnInit {
         this.sortContactsAlphabetically();
         this.groupedContacts = this.groupContactsByLetter();
       }
+      await this.reloadContacts();
       this.closeAddModal();
     }
   }
@@ -170,10 +172,23 @@ export class Contacts implements OnInit {
     if (!contact.id) return;
     const contactRef = doc(this.firestore, 'contacts', contact.id);
     await deleteDoc(contactRef);
+    await this.reloadContacts();
     this.contacts = this.contacts.filter((c) => c.id !== contact.id);
     this.groupedContacts = this.groupContactsByLetter();
     if (this.selectedContact?.id === contact.id) {
       this.selectedContact = this.contacts.length > 0 ? this.contacts[0] : null;
+    }
+  }
+
+  async reloadContacts() {
+    this.contacts = await this.contactService.getAllContacts();
+    this.sortContactsAlphabetically();
+    this.groupedContacts = this.groupContactsByLetter();
+    // Optional: Auswahl zurücksetzen
+    if (this.contacts.length > 0) {
+      this.selectedContact = this.contacts[0];
+    } else {
+      this.selectedContact = null;
     }
   }
 }
