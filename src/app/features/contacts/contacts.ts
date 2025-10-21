@@ -11,14 +11,40 @@ import { ContactHelper, Contact } from '../../core/interfaces/db-contact-interfa
 export class Contacts implements OnInit {
   contacts: Contact[] = [];
   selectedContact: Contact | null = null;
+  groupedContacts: { letter: string; contacts: Contact[] }[] = [];
 
   private contactService = inject(ContactService);
 
   async ngOnInit() {
     this.contacts = await this.contactService.getAllContacts();
+    this.sortContactsAlphabetically();
+    this.groupedContacts = this.groupContactsByLetter();
     if (this.contacts.length > 0) {
       this.selectedContact = this.contacts[0];
     }
+  }
+
+  sortContactsAlphabetically(): void {
+    this.contacts.sort((a, b) => a.firstname.localeCompare(b.firstname));
+  }
+
+  groupContactsByLetter(): { letter: string; contacts: Contact[] }[] {
+    const groups: { [key: string]: Contact[] } = {};
+    
+    this.contacts.forEach(contact => {
+      const letter = contact.firstname.charAt(0).toUpperCase();
+      if (!groups[letter]) {
+        groups[letter] = [];
+      }
+      groups[letter].push(contact);
+    });
+    
+    return Object.keys(groups)
+      .sort()
+      .map(letter => ({
+        letter,
+        contacts: groups[letter]
+      }));
   }
 
   selectContact(contact: Contact) {
@@ -26,10 +52,7 @@ export class Contacts implements OnInit {
   }
 
   getInitials(contact: Contact): string {
-    return (
-      (contact.firstname?.charAt(0) || '') +
-      (contact.lastname?.charAt(0) || '')
-    ).toUpperCase();
+      return (contact.firstname.charAt(0) + contact.lastname.charAt(0)).toUpperCase();
   }
 
   colorPalette = [
@@ -50,4 +73,16 @@ export class Contacts implements OnInit {
     '#C3FF2B', // Lime Green
     '#FFE62B', // Bright Yellow
   ];
+
+  getAvatarColor(contact: Contact): string {
+    let hash = 0;
+    const idString = String(contact.id);
+    
+    for (let i = 0; i < idString.length; i++) {
+      hash = idString.charCodeAt(i) + ((hash << 5) - hash);
+    }
+    
+    const index = Math.abs(hash) % this.colorPalette.length;
+    return this.colorPalette[index];
+  }
 }

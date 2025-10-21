@@ -3,7 +3,7 @@
         <button class="add-btn">Add new contact</button>
         @for (contact of contacts; track contact.id) {
         <div class="contact-list-item" [class.selected]="contact === selectedContact" (click)="selectContact(contact)">
-            <span class="avatar" [style.background]="contact === selectedContact ? '#ff9100' : '#bdbdbd'">
+            <span class="avatar" [style.background]="getAvatarColor(contact)">
                 {{ getInitials(contact) }}
             </span>
             <div class="contact-info">
@@ -16,7 +16,7 @@
     @if (selectedContact) {
     <div class="contact-details">
         <div class="details-header">
-            <span class="avatar big">{{ getInitials(selectedContact!) }}</span>
+            <span class="avatar big" [style.background]="getAvatarColor(selectedContact!)">{{ getInitials(selectedContact!) }}</span>
             <span class="details-name">{{ selectedContact!.firstname }} {{ selectedContact!.lastname }}</span>
             <div class="details-actions">
                 <button>Edit</button>
