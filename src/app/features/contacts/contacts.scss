@@ -128,13 +128,11 @@
   align-items: flex-start;
   min-width: 220px;
   justify-content: center;
-  
 }
 
-.join-img{
+.join-img {
   width: 50px;
   height: 50px;
-
 }
 
 .modal-left .logo {
@@ -216,12 +214,13 @@
   justify-content: center;
   align-items: center;
 }
+
 .blue-line {
-    height: 2px;
-    width: 71px;
-    margin-top: 10px;
-    background-color: rgb(41, 171, 226);
-  }
+  height: 2px;
+  width: 71px;
+  margin-top: 10px;
+  background-color: rgb(41, 171, 226);
+}
 
 @media (max-width: 900px) {
   .modal {
@@ -282,5 +281,29 @@
     font-size: 1em;
     margin-left: 0px;
   }
+}
 
+.letter-group {
+  margin-bottom: 24px;
+}
+
+.letter-header {
+  margin-bottom: 12px;
+}
+
+.letter {
+  display: inline-block;
+  font-size: 1.2em;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 8px;
+}
+
+.letter-divider {
+  width: 352px;
+  height: 0px;
+  border-radius: 3px;
+  opacity: 1;
+  border: 1px solid #ddd;
+  margin-top: 8px;
 }

@@ -1,4 +1,3 @@
-/* Global Styles */
 * {
   margin: 0;
   padding: 0;
@@ -10,12 +9,23 @@ body {
   color: #2a3647;
   background-color: #f6f7f8;
   overflow: hidden;
+  display: flex;
+  justify-content: center;
 }
 
 html,
 body {
   height: 100%;
   width: 100%;
+}
+
+app-root {
+  display: block;
+  width: 100%;
+  max-width: 1920px;
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
 }
 
 h1,
