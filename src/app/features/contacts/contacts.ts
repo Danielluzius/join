@@ -1,7 +1,7 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { ContactService } from '../../core/services/db-contact-service';
 import { ContactHelper, Contact } from '../../core/interfaces/db-contact-interface';
-import { Firestore, collection, addDoc } from '@angular/fire/firestore';
+import { Firestore, collection, addDoc, doc, updateDoc } from '@angular/fire/firestore';
 import { FormsModule } from '@angular/forms';
 
 
@@ -23,6 +23,8 @@ export class Contacts implements OnInit {
 
   private contactService = inject(ContactService);
   private firestore = inject(Firestore);
+
+  editMode = false;
 
   async ngOnInit() {
     this.contacts = await this.contactService.getAllContacts();
@@ -95,13 +97,22 @@ export class Contacts implements OnInit {
     return this.colorPalette[index];
   }
 
-  openAddModal() {
+  openAddModal(editContact?: Contact) {
     this.showAddModal = true;
-    this.newContact = {};
+    this.errorMessage = '';
+    if (editContact) {
+      this.editMode = true;
+      this.newContact = { ...editContact };
+    } else {
+      this.editMode = false;
+      this.newContact = {};
+    }
   }
 
   closeAddModal() {
     this.showAddModal = false;
+    this.editMode = false;
+    this.newContact = {};
   }
 
   async createContact() {
@@ -116,5 +127,30 @@ export class Contacts implements OnInit {
   this.contacts.push(contact);
   this.selectedContact = contact;
   this.closeAddModal();
+}
+
+async saveChanges() {
+  if (!this.newContact.firstname || !this.newContact.email || !this.newContact.phone) {
+    this.errorMessage = 'All Inputs are required.';
+    return;
+  }
+  this.errorMessage = '';
+  if (this.newContact.id) {
+    const contactRef = doc(this.firestore, 'contacts', this.newContact.id);
+    await updateDoc(contactRef, {
+      firstname: this.newContact.firstname,
+      email: this.newContact.email,
+      phone: this.newContact.phone,
+      lastname: this.newContact.lastname
+    });
+    const idx = this.contacts.findIndex(c => c.id === this.newContact.id);
+    if (idx > -1) {
+      this.contacts[idx] = { ...this.newContact } as Contact;
+      this.selectedContact = this.contacts[idx];
+      this.sortContactsAlphabetically();
+      this.groupedContacts = this.groupContactsByLetter();
+    }
+    this.closeAddModal();
+  }
 }
 }
