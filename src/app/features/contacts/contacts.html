@@ -42,7 +42,7 @@
           <img src="assets/edit.png" alt="Edit" class="action-icon" />
           Edit
         </button>
-        <button class="icon-btn" (click)="deleteContact(selectedContact!)">
+        <button class="icon-btn" (click)="openDeleteModal()">
           <img src="assets/delete.png" alt="Delete" class="action-icon" />
           Delete
         </button>
@@ -100,4 +100,22 @@
     </div>
   </div>
   }
+  @if (showDeleteModal) {
+  <div class="modal-overlay">
+    <div class="modal delete-modal">
+      <div class="delete-modal-content">
+        <h3>Kontakt löschen</h3>
+        <p>
+          Wollen Sie den Kontakt:<br>
+          <strong>{{ selectedContact?.firstname }} {{ selectedContact?.lastname }}</strong>
+          wirklich löschen?
+        </p>
+        <div class="modal-actions">
+          <button type="button" class="secondary" (click)="closeDeleteModal()">Abbrechen</button>
+          <button type="button" class="primary danger" (click)="confirmDelete()">Löschen</button>
+        </div>
+      </div>
+    </div>
+  </div>
+}
 </div>

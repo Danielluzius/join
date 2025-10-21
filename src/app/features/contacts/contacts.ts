@@ -15,6 +15,7 @@ export class Contacts implements OnInit {
   contacts: Contact[] = [];
   selectedContact: Contact | null = null;
   showAddModal = false;
+  showDeleteModal = false;
   newContact: Partial<Contact> = {};
   errorMessage = '';
   groupedContacts: { letter: string; contacts: Contact[] }[] = [];
@@ -147,6 +148,21 @@ export class Contacts implements OnInit {
         this.groupedContacts = this.groupContactsByLetter();
       }
       this.closeAddModal();
+    }
+  }
+
+  openDeleteModal() {
+    this.showDeleteModal = true;
+  }
+
+  closeDeleteModal() {
+    this.showDeleteModal = false;
+  }
+
+  async confirmDelete() {
+    if (this.selectedContact) {
+      await this.deleteContact(this.selectedContact);
+      this.closeDeleteModal();
     }
   }
 
