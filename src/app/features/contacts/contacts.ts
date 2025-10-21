@@ -4,14 +4,12 @@ import { ContactHelper, Contact } from '../../core/interfaces/db-contact-interfa
 import { Firestore, collection, addDoc, doc, updateDoc, deleteDoc } from '@angular/fire/firestore';
 import { FormsModule } from '@angular/forms';
 
-
 @Component({
   selector: 'app-contacts',
   templateUrl: './contacts.html',
   styleUrl: './contacts.scss',
   standalone: true,
-  imports: [FormsModule]
-
+  imports: [FormsModule],
 })
 export class Contacts implements OnInit {
   contacts: Contact[] = [];
@@ -30,9 +28,7 @@ export class Contacts implements OnInit {
     this.contacts = await this.contactService.getAllContacts();
     this.sortContactsAlphabetically();
     this.groupedContacts = this.groupContactsByLetter();
-    if (this.contacts.length > 0) {
-      this.selectedContact = this.contacts[0];
-    }
+    // Kein Kontakt wird initial ausgewählt
   }
 
   sortContactsAlphabetically(): void {
@@ -42,7 +38,7 @@ export class Contacts implements OnInit {
   groupContactsByLetter(): { letter: string; contacts: Contact[] }[] {
     const groups: { [key: string]: Contact[] } = {};
 
-    this.contacts.forEach(contact => {
+    this.contacts.forEach((contact) => {
       const letter = contact.firstname.charAt(0).toUpperCase();
       if (!groups[letter]) {
         groups[letter] = [];
@@ -52,9 +48,9 @@ export class Contacts implements OnInit {
 
     return Object.keys(groups)
       .sort()
-      .map(letter => ({
+      .map((letter) => ({
         letter,
-        contacts: groups[letter]
+        contacts: groups[letter],
       }));
   }
 
@@ -63,7 +59,7 @@ export class Contacts implements OnInit {
   }
 
   getInitials(contact: Contact): string {
-    return (contact.firstname.charAt(0)).toUpperCase();
+    return contact.firstname.charAt(0).toUpperCase();
   }
 
   colorPalette = [
@@ -123,7 +119,7 @@ export class Contacts implements OnInit {
     this.errorMessage = '';
     const contactsRef = collection(this.firestore, 'contacts');
     const docRef = await addDoc(contactsRef, this.newContact);
-    const contact: Contact = { id: docRef.id, ...this.newContact as Contact };
+    const contact: Contact = { id: docRef.id, ...(this.newContact as Contact) };
     this.contacts.push(contact);
     this.selectedContact = contact;
     this.closeAddModal();
@@ -141,9 +137,9 @@ export class Contacts implements OnInit {
         firstname: this.newContact.firstname,
         email: this.newContact.email,
         phone: this.newContact.phone,
-        lastname: this.newContact.lastname
+        lastname: this.newContact.lastname,
       });
-      const idx = this.contacts.findIndex(c => c.id === this.newContact.id);
+      const idx = this.contacts.findIndex((c) => c.id === this.newContact.id);
       if (idx > -1) {
         this.contacts[idx] = { ...this.newContact } as Contact;
         this.selectedContact = this.contacts[idx];
@@ -158,11 +154,10 @@ export class Contacts implements OnInit {
     if (!contact.id) return;
     const contactRef = doc(this.firestore, 'contacts', contact.id);
     await deleteDoc(contactRef);
-    this.contacts = this.contacts.filter(c => c.id !== contact.id);
+    this.contacts = this.contacts.filter((c) => c.id !== contact.id);
     this.groupedContacts = this.groupContactsByLetter();
     if (this.selectedContact?.id === contact.id) {
       this.selectedContact = this.contacts.length > 0 ? this.contacts[0] : null;
     }
-
   }
 }
