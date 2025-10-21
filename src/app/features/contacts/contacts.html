@@ -124,15 +124,14 @@
   <div class="modal-overlay">
     <div class="modal delete-modal">
       <div class="delete-modal-content">
-        <h3>Kontakt löschen</h3>
+        <h3>Delete contact</h3>
         <p>
-          Wollen Sie den Kontakt:<br>
+          Do you really want to delete the contact:<br>
           <strong>{{ selectedContact?.firstname }} {{ selectedContact?.lastname }}</strong>
-          wirklich löschen?
         </p>
         <div class="modal-actions">
-          <button type="button" class="secondary" (click)="closeDeleteModal()">Abbrechen</button>
-          <button type="button" class="primary danger" (click)="confirmDelete()">Löschen</button>
+          <button type="button" class="secondary" (click)="closeDeleteModal()">Cancel</button>
+          <button type="button" class="primary danger" (click)="confirmDelete()">Delete</button>
         </div>
       </div>
     </div>
