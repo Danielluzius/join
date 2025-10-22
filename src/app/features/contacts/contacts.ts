@@ -139,7 +139,7 @@ export class Contacts implements OnInit {
         firstname: this.newContact.firstname,
         email: this.newContact.email,
         phone: this.newContact.phone,
-         lastname: this.newContact.lastname ?? '' 
+        lastname: this.newContact.lastname ?? '',
       });
       const idx = this.contacts.findIndex((c) => c.id === this.newContact.id);
       if (idx > -1) {
@@ -176,7 +176,7 @@ export class Contacts implements OnInit {
     this.contacts = this.contacts.filter((c) => c.id !== contact.id);
     this.groupedContacts = this.groupContactsByLetter();
     if (this.selectedContact?.id === contact.id) {
-      this.selectedContact = this.contacts.length > 0 ? this.contacts[0] : null;
+      this.selectedContact = null;
     }
   }
 
@@ -184,10 +184,5 @@ export class Contacts implements OnInit {
     this.contacts = await this.contactService.getAllContacts();
     this.sortContactsAlphabetically();
     this.groupedContacts = this.groupContactsByLetter();
-    if (this.contacts.length > 0) {
-      this.selectedContact = this.contacts[0];
-    } else {
-      this.selectedContact = null;
-    }
   }
 }
