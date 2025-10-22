@@ -88,3 +88,49 @@
     transform: scale(1.05);
   }
 }
+
+@media (max-width: 428px) {
+  .header {
+    height: 80px;
+    padding: 16px 20px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    z-index: 999;
+  }
+
+  .header-title {
+    font-size: 18px;
+  }
+
+  .header-actions {
+    gap: 16px;
+  }
+
+  .help-btn {
+    width: 28px;
+    height: 28px;
+
+    .help-icon {
+      width: 18px;
+      height: 18px;
+    }
+  }
+
+  .user-avatar {
+    width: 48px;
+    height: 48px;
+    border: 2px solid #2a3647;
+
+    &::before {
+      width: 42px;
+      height: 42px;
+    }
+
+    .avatar-text {
+      font-size: 14px;
+    }
+  }
+}

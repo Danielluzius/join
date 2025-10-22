@@ -11,3 +11,16 @@
   overflow: hidden;
   background-color: #f6f7f8;
 }
+
+@media (max-width: 428px) {
+  .main-content {
+    margin-left: 0;
+    margin-top: 80px;    
+    margin-bottom: 70px; 
+    height: calc(100vh - 150px);
+  }
+
+  .content-area {
+    overflow-y: auto; 
+  }
+}
