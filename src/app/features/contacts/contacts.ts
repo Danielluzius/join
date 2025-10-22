@@ -189,4 +189,9 @@ export class Contacts implements OnInit {
     this.sortContactsAlphabetically();
     this.groupedContacts = this.groupContactsByLetter();
   }
+
+  openDeleteModalFromEdit() {
+    this.closeAddModal();
+    this.openDeleteModal();
+  }
 }

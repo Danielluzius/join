@@ -122,13 +122,21 @@
             <input type="text" placeholder="Phone" [(ngModel)]="newContact.phone" name="phone" required />
             <img src="assets/phone-icon.png" alt="Phone" class="input-icon" />
           </div>
+
           <div class="modal-actions">
-            <button type="button" class="secondary" (click)="closeAddModal()">Cancel</button>
-            @if (editMode) {
-            <button type="button" class="primary" (click)="saveChanges()">Save ✓</button>
-            } @else {
-            <button type="submit" class="primary">Create contact ✓</button>
-            }
+            <button type="button" class="secondary desktop-cancel" (click)="closeAddModal()">Cancel</button>
+          
+          @if (editMode) {
+          <button type="button" class="secondary mobile-delete" (click)="openDeleteModalFromEdit()">Delete</button>
+          } @else {
+          <button type="button" class="secondary mobile-cancel" (click)="closeAddModal()">Cancel</button>
+          }
+          
+          @if (editMode) {
+          <button type="button" class="primary" (click)="saveChanges()">Save ✓</button>
+          } @else {
+          <button type="submit" class="primary">Create contact ✓</button>
+          }
           </div>
         </form>
       </div>
