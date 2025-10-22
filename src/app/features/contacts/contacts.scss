@@ -751,12 +751,12 @@
     display: none;
   }
 
-  .mobile-delete,
   .mobile-cancel {
-    display: inline-flex;
+    display: none;
   }
 
   .mobile-delete {
+    display: inline-flex;
     width: 82px;
     height: 51px;
     padding: 18px 10px;
