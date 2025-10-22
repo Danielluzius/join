@@ -29,6 +29,9 @@
       </div>
       }
     </div>
+    <button class="mobile-add-btn" (click)="openAddModal()">
+      <img src="assets/responsive-add-button.png" alt="Add contact">
+    </button>
   </div>
 
   <div class="contact-details-container">
@@ -58,7 +61,7 @@
           getInitials(selectedContact!) }}</span>
         <div class="header-content">
           <span class="details-name">{{ selectedContact!.firstname }} {{ selectedContact!.lastname }}</span>
-          <div class="details-actions">
+          <div class="details-actions desktop-only">
             <button class="icon-btn edit-btn" (click)="openAddModal(selectedContact!)">
               <img src="assets/edit.png" alt="Edit" class="action-icon" />
               Edit
@@ -70,6 +73,9 @@
           </div>
         </div>
       </div>
+      <button class="mobile-edit-btn" (click)="openAddModal(selectedContact!)">
+        <img src="assets/responsive-edit-button.png" alt="Edit contact">
+      </button>
       <div class="contact-information-title">Contact Information</div>
       <div class="details-info">
         <div class="info-item">

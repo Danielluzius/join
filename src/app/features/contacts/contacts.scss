@@ -100,6 +100,11 @@
   display: none;
 }
 
+.mobile-add-btn,
+.mobile-edit-btn {
+  display: none;
+}
+
 
 //Contactlist, Entrys
 .letter-group {
@@ -711,6 +716,66 @@
   .default-content {
     display: none;
   }
+
+  .button-container {
+    display: none;
+  }
+
+  .details-actions.desktop-only {
+    display: none;
+  }
+
+  .mobile-add-btn {
+    display: flex;
+    position: fixed;
+    bottom: 90px; 
+    right: 10px;
+    width: 60px;
+    height: 60px;
+    padding: 0;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    z-index: 100;
+    transition: transform 0.2s ease;
+
+    img {
+      width: 100%;
+      height: 100%;
+    }
+
+    &:active {
+      transform: scale(0.95);
+    }
+  }
+
+  .contacts-container.contact-selected .mobile-add-btn {
+    display: none;
+  }
+
+  .mobile-edit-btn {
+    display: flex;
+    position: fixed;
+    bottom: 90px;
+    right: 10px;
+    width: 60px;
+    height: 60px;
+    padding: 0;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    z-index: 100;
+    transition: transform 0.2s ease;
+
+    img {
+      width: 100%;
+      height: 100%;
+    }
+
+    &:active {
+      transform: scale(0.95);
+    }
+  }
   
   .back-btn.mobile-only {
     display: flex;
@@ -749,7 +814,7 @@
     display: block;
     font-family: 'Inter', sans-serif;
     font-weight: 700;
-    font-size: 32px;
+    font-size: 47px;
     line-height: 120%;
     color: #000000;
     margin: 0;
@@ -759,7 +824,7 @@
     display: block;
     font-family: 'Inter', sans-serif;
     font-weight: 400;
-    font-size: 16px;
+    font-size: 20px;
     line-height: 120%;
     color: #2a3647;
     margin: 0;
@@ -782,11 +847,13 @@
   .contacts-sidebar {
     display: flex;
     width: 100%;
+    position: relative; 
   }
 
   .contact-details-container {
     display: none;
     width: 100%;
+    position: relative;
   }
 
   .contacts-container.contact-selected .contacts-sidebar {
@@ -796,5 +863,43 @@
   .contacts-container.contact-selected .contact-details-container {
     display: flex;
     flex-direction: column;
+  }
+
+  .contact-details {
+    padding: 0 20px;
+    padding-top: 24px;
+    position: relative;
+  }
+
+  .avatar.big {
+    width: 80px;
+    height: 80px;
+    font-size: 32px;
+    border: 3px solid #ffffff;
+  }
+
+  .details-header {
+    gap: 24px;
+  }
+
+  .details-name {
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-style: normal;
+    font-size: 36px;
+    line-height: 120%;
+    letter-spacing: 0%;
+  }
+
+  .contact-information-title {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 20px;
+    line-height: 120%;
+    letter-spacing: 0%;
+    color: #000000;
+    height: auto;
+    margin-top: 0;
   }
 }
