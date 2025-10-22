@@ -59,6 +59,10 @@ export class Contacts implements OnInit {
     this.selectedContact = contact;
   }
 
+  deselectContact() {
+    this.selectedContact = null;
+  }
+  
   getInitials(contact: Contact): string {
     return contact.firstname.charAt(0).toUpperCase();
   }

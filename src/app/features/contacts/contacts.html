@@ -1,4 +1,4 @@
-<div class="contacts-container">
+<div class="contacts-container" [class.contact-selected]="selectedContact !== null">
   <div class="contacts-sidebar">
     <div class="button-container">
       <button (click)="openAddModal()" class="add-btn">
@@ -33,6 +33,10 @@
 
   <div class="contact-details-container">
     <div class="contact-details-header">
+      <button class="back-btn mobile-only" (click)="deselectContact()">
+        <img src="assets/responsive-back-button.png" alt="Back">
+        Contacts
+      </button>
       <div class="default-content">
         <h1 class="default-title">
           Contacts
