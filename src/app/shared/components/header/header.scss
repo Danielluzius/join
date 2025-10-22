@@ -19,6 +19,14 @@
   margin: 0;
 }
 
+.header-logo.mobile-only {
+  display: none;
+}
+
+.header-title.desktop-only {
+  display: block;
+}
+
 .header-actions {
   display: flex;
   align-items: center;
@@ -98,11 +106,17 @@
     left: 0;
     right: 0;
     width: 100%;
-    z-index: 999;
+    z-index: 10;
   }
 
-  .header-title {
-    font-size: 18px;
+  .header-title.desktop-only {
+    display: none;
+  }
+
+  .header-logo.mobile-only {
+    display: block;
+    width: 32px;
+    height: 39.02px;
   }
 
   .header-actions {
