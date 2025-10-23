@@ -1,6 +1,6 @@
 .contacts-sidebar {
   position: relative;
-  width: 453px;
+  width: clamp(285px, 30vw, 453px);
   height: 100%;
   background: #ffffff;
   box-shadow: 4px 0px 6px rgba(0, 0, 0, 0.08);
@@ -191,6 +191,31 @@
   font-size: 12px;
   line-height: 120%;
   flex-shrink: 0;
+}
+
+
+.add-btn {
+  width: 90%;
+  min-width: 180px;
+  max-width: 352px;
+  font-size: clamp(16px, 2vw, 21px);
+  padding: 12px 8px;
+}
+
+.letter-group,
+.letter-header,
+.letter-divider,
+.contact-list-item {
+  width: 100%;
+  max-width: 352px;
+}
+
+.contact-info .name {
+  font-size: clamp(16px, 2vw, 20px);
+}
+
+.contact-info .email {
+  font-size: clamp(13px, 1.5vw, 16px);
 }
 
 @media (max-width: 768px) {
