@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, HostListener } from '@angular/core';
 import { Contact } from '../../../core/interfaces/db-contact-interface';
 
 @Component({
@@ -15,13 +15,28 @@ export class ContactDetails {
   @Output() deleteClicked = new EventEmitter<void>();
   @Output() backClicked = new EventEmitter<void>();
 
+  showMobileOptionsOverlay = false;
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event: any) {
+    if (window.innerWidth > 600) {
+      this.showMobileOptionsOverlay = false;
+    }
+  }
+
+  toggleMobileOptions() {
+    this.showMobileOptionsOverlay = !this.showMobileOptionsOverlay;
+  }
+
   onEdit() {
+    this.showMobileOptionsOverlay = false;
     if (this.selectedContact) {
       this.editClicked.emit(this.selectedContact);
     }
   }
 
   onDelete() {
+    this.showMobileOptionsOverlay = false;
     this.deleteClicked.emit();
   }
 

@@ -1,8 +1,9 @@
 .main-content {
   margin-left: 232px;
+  margin-top: 96px;
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  height: calc(100vh - 96px);
   overflow: hidden;
 }
 

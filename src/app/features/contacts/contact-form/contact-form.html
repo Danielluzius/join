@@ -1,39 +1,41 @@
 @if (showModal) {
-    <div class="modal-overlay">
-        <div class="modal">
-            <div class="modal-left">
-                <div class="left-text">
-                    <img class="join-img" src="assets/header-join-icon-vector.png" alt="">
-                    <h2>{{ editMode ? 'Edit contact' : 'Add contact' }}</h2>
-                    @if (!editMode) {
-                    <p>Tasks are better with a team!</p>
-                    }
-                    <div class="blue-line"></div>
-                </div>
+<div class="modal-overlay">
+    <div class="modal">
+        <div class="modal-left">
+            <div class="left-text">
+                <img class="join-img" src="assets/header-join-icon-vector.png" alt="">
+                <h2>{{ editMode ? 'Edit contact' : 'Add contact' }}</h2>
+                @if (!editMode) {
+                <p>Tasks are better with a team!</p>
+                }
+                <div class="blue-line"></div>
             </div>
-            <div class="modal-right">
-                <button class="close-btn" (click)="onClose()">×</button>
+        </div>
+        <div class="modal-right">
+            <button class="close-btn" (click)="onClose()">×</button>
 
-                    <div class="edit-avatar-container">
-                        @if (editMode && contact) {
-                            <span class="avatar" [style.background]="getAvatarColor(contact)">
-                                {{ getInitials(contact) }}
-                            </span>
-                        } @else {
-                            <div class="avatar no-profile">
-                                <img src="assets/responsive-noprofile-pic.png" alt="No profile picture">
-                            </div>
-                        }
-                    </div>
+            <!-- Avatar außerhalb des Content-Bereichs für absolute Positionierung -->
+            <div class="avatar-container">
+                @if (editMode && contact) {
+                <span class="avatar" [style.background]="getAvatarColor(contact)">
+                    {{ getInitials(contact) }}
+                </span>
+                } @else {
+                <div class="avatar no-profile">
+                    <img src="assets/responsive-noprofile-pic.png" alt="No profile picture">
+                </div>
+                }
+            </div>
 
+            <div class="form-container">
                 <form (ngSubmit)="onSubmit()" autocomplete="off">
-                    <div class="placeholder">
-                        @if (errorMessage) {
-                        <div class="error-message">{{ errorMessage }}</div>
-                        }
-                    </div>
+                    @if (errorMessage) {
+                    <div class="error-message">{{ errorMessage }}</div>
+                    }
                     <div class="input-wrapper">
-                        <input type="text" placeholder="Name" [(ngModel)]="formData.firstname" name="firstname" required />
+                        <input type="text" placeholder="Name" [(ngModel)]="formData.firstname" name="firstname"
+                            required />
+                        <div class="input-divider"></div>
                         <img src="assets/person-icon.png" alt="Person" class="input-icon" />
                     </div>
                     <div class="input-wrapper">
@@ -44,24 +46,29 @@
                         <input type="text" placeholder="Phone" [(ngModel)]="formData.phone" name="phone" required />
                         <img src="assets/phone-icon.png" alt="Phone" class="input-icon" />
                     </div>
-    
+
                     <div class="modal-actions">
-                        <button type="button" class="secondary desktop-cancel" (click)="onClose()">Cancel</button>
-    
                         @if (editMode) {
-                        <button type="button" class="secondary mobile-delete" (click)="onDeleteFromEdit()">Delete</button>
+                        <button type="button" class="secondary delete-btn" (click)="onDeleteFromEdit()">Delete</button>
                         } @else {
-                        <button type="button" class="secondary mobile-cancel" (click)="onClose()">Cancel</button>
+                        <button type="button" class="secondary cancel-btn" (click)="onClose()">Cancel ×</button>
                         }
-    
+
                         @if (editMode) {
-                        <button type="submit" class="primary">Save ✓</button>
+                        <button type="submit" class="primary">
+                            Save
+                            <img src="assets/check.png" alt="Check" class="check-icon" />
+                        </button>
                         } @else {
-                        <button type="submit" class="primary">Create contact ✓</button>
+                        <button type="submit" class="primary">
+                            Create contact
+                            <img src="assets/check.png" alt="Check" class="check-icon" />
+                        </button>
                         }
                     </div>
                 </form>
             </div>
         </div>
     </div>
-    }
+</div>
+}

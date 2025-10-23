@@ -37,9 +37,25 @@
                 </div>
             </div>
         </div>
-        <button class="mobile-edit-btn" (click)="onEdit()">
+        <button class="mobile-edit-btn" (click)="toggleMobileOptions()">
             <img src="assets/responsive-edit-button.png" alt="Edit contact">
         </button>
+
+        @if (showMobileOptionsOverlay) {
+        <div class="mobile-options-overlay" (click)="toggleMobileOptions()">
+            <div class="mobile-options-menu" (click)="$event.stopPropagation()">
+                <button class="option-btn edit-option" (click)="onEdit()">
+                    <img src="assets/edit.png" alt="Edit" class="option-icon" />
+                    <span>Edit</span>
+                </button>
+                <button class="option-btn delete-option" (click)="onDelete()">
+                    <img src="assets/delete.png" alt="Delete" class="option-icon" />
+                    <span>Delete</span>
+                </button>
+            </div>
+        </div>
+        }
+
         <div class="contact-information-title">Contact Information</div>
         <div class="details-info">
             <div class="info-item">
