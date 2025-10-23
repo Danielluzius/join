@@ -13,13 +13,19 @@
             </div>
             <div class="modal-right">
                 <button class="close-btn" (click)="onClose()">×</button>
-                @if (editMode && contact) {
+
                     <div class="edit-avatar-container">
-                      <span class="avatar" [style.background]="getAvatarColor(contact)">
-                        {{ getInitials(contact) }}
-                      </span>
+                        @if (editMode && contact) {
+                            <span class="avatar" [style.background]="getAvatarColor(contact)">
+                                {{ getInitials(contact) }}
+                            </span>
+                        } @else {
+                            <div class="avatar no-profile">
+                                <img src="assets/responsive-noprofile-pic.png" alt="No profile picture">
+                            </div>
+                        }
                     </div>
-                    }
+
                 <form (ngSubmit)="onSubmit()" autocomplete="off">
                     <div class="placeholder">
                         @if (errorMessage) {
