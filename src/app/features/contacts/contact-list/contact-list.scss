@@ -11,6 +11,10 @@
   align-items: center;
   border-top: 1px solid rgba(209, 209, 209, 0.3);
 
+  @media (max-width: 1440px) {
+    width: clamp(320px, 35vw, 456px);
+  }
+
   // Custom Scrollbar (Figma Design)
   &::-webkit-scrollbar {
     width: 24px;
@@ -79,6 +83,11 @@
   gap: 16px;
   transition: background 0.2s, box-shadow 0.2s, border-color 0.2s;
 
+  @media (max-width: 1440px) {
+    width: clamp(280px, 80%, 352px);
+    font-size: clamp(18px, 1.5vw, 21px);
+  }
+
   &:hover {
     background: #29abe2;
     border-color: #29abe2;
@@ -109,6 +118,10 @@
   flex-direction: column;
   width: 352px;
   margin-bottom: 0;
+
+  @media (max-width: 1440px) {
+    width: clamp(280px, 80%, 352px);
+  }
 }
 
 .letter-header {
@@ -120,6 +133,10 @@
   gap: 8px;
   width: 352px;
   height: 58px;
+
+  @media (max-width: 1440px) {
+    width: clamp(280px, 80%, 352px);
+  }
 }
 
 .letter {
@@ -142,10 +159,18 @@
   height: 16px;
   border: none;
 
+  @media (max-width: 1440px) {
+    width: clamp(280px, 80%, 352px);
+  }
+
   &::after {
     content: '';
     width: 352px;
     height: 0px;
+
+    @media (max-width: 1440px) {
+      width: 100%;
+    }
     border: 1px solid #d1d1d1;
     border-radius: 3px;
   }
@@ -164,6 +189,12 @@
   cursor: pointer;
   margin-bottom: 0;
   transition: background 0.2s;
+
+  @media (max-width: 1440px) {
+    width: clamp(280px, 80%, 352px);
+    padding: 15px clamp(12px, 2vw, 24px);
+    gap: clamp(20px, 3vw, 35px);
+  }
 
   &:hover:not(.selected) {
     background: #f0f0f0;
@@ -184,13 +215,18 @@
   align-items: flex-start;
   gap: 5px;
   flex: 1;
+  min-width: 0;
 }
 
 .contact-info .name {
   font-weight: 400;
-  font-size: clamp(16px, 4vw, 20px);
+  font-size: 20px;
   line-height: 120%;
   color: #000000;
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .contact-info .email {
@@ -198,6 +234,10 @@
   font-size: 16px;
   line-height: 120%;
   color: #007cee;
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .avatar {
@@ -224,7 +264,7 @@
   max-width: 352px;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 600px) {
   .contacts-sidebar {
     width: 100%;
     box-shadow: none;
