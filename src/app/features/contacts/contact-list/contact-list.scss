@@ -1,6 +1,6 @@
 .contacts-sidebar {
   position: relative;
-  width: clamp(285px, 30vw, 453px);
+  width: 456px;
   height: 100%;
   background: #ffffff;
   box-shadow: 4px 0px 6px rgba(0, 0, 0, 0.08);
@@ -10,11 +10,34 @@
   flex-direction: column;
   align-items: center;
   border-top: 1px solid rgba(209, 209, 209, 0.3);
+
+  // Custom Scrollbar (Figma Design)
+  &::-webkit-scrollbar {
+    width: 24px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #a8a8a8;
+    border-radius: 3px;
+    border: 8px solid #ffffff;
+
+    &:hover {
+      background: #888888;
+    }
+  }
+
+  // Firefox Scrollbar
+  scrollbar-width: thin;
+  scrollbar-color: #a8a8a8 transparent;
 }
 
 .contacts-list {
   width: 100%;
-  padding: 0 0 32px 0;
+  padding: 0 24px 32px 24px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -165,7 +188,7 @@
 
 .contact-info .name {
   font-weight: 400;
-  font-size: 20px;
+  font-size: clamp(16px, 4vw, 20px);
   line-height: 120%;
   color: #000000;
 }
@@ -193,29 +216,12 @@
   flex-shrink: 0;
 }
 
-
-.add-btn {
-  width: 90%;
-  min-width: 180px;
-  max-width: 352px;
-  font-size: clamp(16px, 2vw, 21px);
-  padding: 12px 8px;
-}
-
 .letter-group,
 .letter-header,
 .letter-divider,
 .contact-list-item {
   width: 100%;
   max-width: 352px;
-}
-
-.contact-info .name {
-  font-size: clamp(16px, 2vw, 20px);
-}
-
-.contact-info .email {
-  font-size: clamp(13px, 1.5vw, 16px);
 }
 
 @media (max-width: 768px) {
@@ -257,10 +263,12 @@
 
   .letter-group {
     width: 100%;
+    max-width: none;
   }
 
   .letter-header {
     width: 100%;
+    max-width: none;
     padding: 17px 0px;
   }
 
@@ -270,6 +278,7 @@
 
   .letter-divider {
     width: 100%;
+    max-width: none;
 
     &::after {
       width: 100%;
@@ -278,5 +287,6 @@
 
   .contact-list-item {
     width: 100%;
+    max-width: none;
   }
 }
