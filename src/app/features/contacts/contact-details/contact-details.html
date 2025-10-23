@@ -1,0 +1,56 @@
+<div class="contact-details-container">
+    <div class="contact-details-header">
+        <div class="header-left">
+            <h1 class="mobile-title">Contacts</h1>
+            <p class="mobile-subtitle">Better with a team</p>
+            <div class="mobile-divider"></div>
+        </div>
+        <button class="back-btn mobile-only" (click)="onBack()">
+            <img src="assets/responsive-back-button.png" alt="Back">
+        </button>
+
+        <div class="default-content">
+            <h1 class="default-title">
+                Contacts
+                <span class="default-separator"></span>
+                <span class="default-subtitle">Better with a team</span>
+            </h1>
+        </div>
+    </div>
+
+    @if (selectedContact) {
+    <div class="contact-details">
+        <div class="details-header">
+            <span class="avatar big" [style.background]="getAvatarColor(selectedContact!)">{{
+                getInitials(selectedContact!) }}</span>
+            <div class="header-content">
+                <span class="details-name">{{ selectedContact!.firstname }} {{ selectedContact!.lastname }}</span>
+                <div class="details-actions desktop-only">
+                    <button class="icon-btn edit-btn" (click)="onEdit()">
+                        <img src="assets/edit.png" alt="Edit" class="action-icon" />
+                        Edit
+                    </button>
+                    <button class="icon-btn delete-btn" (click)="onDelete()">
+                        <img src="assets/delete.png" alt="Delete" class="action-icon" />
+                        Delete
+                    </button>
+                </div>
+            </div>
+        </div>
+        <button class="mobile-edit-btn" (click)="onEdit()">
+            <img src="assets/responsive-edit-button.png" alt="Edit contact">
+        </button>
+        <div class="contact-information-title">Contact Information</div>
+        <div class="details-info">
+            <div class="info-item">
+                <strong>Email</strong>
+                <a href="mailto:{{selectedContact!.email}}">{{ selectedContact!.email }}</a>
+            </div>
+            <div class="info-item">
+                <strong>Phone</strong>
+                <span>{{ selectedContact!.phone }}</span>
+            </div>
+        </div>
+    </div>
+    }
+</div>

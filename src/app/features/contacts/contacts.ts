@@ -3,13 +3,15 @@ import { ContactService } from '../../core/services/db-contact-service';
 import { ContactHelper, Contact } from '../../core/interfaces/db-contact-interface';
 import { Firestore, collection, addDoc, doc, updateDoc, deleteDoc } from '@angular/fire/firestore';
 import { FormsModule } from '@angular/forms';
+import { ContactList } from './contact-list/contact-list';
+import { ContactDetails } from './contact-details/contact-details';
 
 @Component({
   selector: 'app-contacts',
   templateUrl: './contacts.html',
   styleUrl: './contacts.scss',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule, ContactList, ContactDetails],
 })
 export class Contacts implements OnInit {
   contacts: Contact[] = [];
@@ -18,7 +20,6 @@ export class Contacts implements OnInit {
   showDeleteModal = false;
   newContact: Partial<Contact> = {};
   errorMessage = '';
-  groupedContacts: { letter: string; contacts: Contact[] }[] = [];
 
   private contactService = inject(ContactService);
   private firestore = inject(Firestore);
@@ -27,32 +28,7 @@ export class Contacts implements OnInit {
 
   async ngOnInit() {
     this.contacts = await this.contactService.getAllContacts();
-    this.sortContactsAlphabetically();
-    this.groupedContacts = this.groupContactsByLetter();
     // Kein Kontakt wird initial ausgewählt
-  }
-
-  sortContactsAlphabetically(): void {
-    this.contacts.sort((a, b) => a.firstname.localeCompare(b.firstname));
-  }
-
-  groupContactsByLetter(): { letter: string; contacts: Contact[] }[] {
-    const groups: { [key: string]: Contact[] } = {};
-
-    this.contacts.forEach((contact) => {
-      const letter = contact.firstname.charAt(0).toUpperCase();
-      if (!groups[letter]) {
-        groups[letter] = [];
-      }
-      groups[letter].push(contact);
-    });
-
-    return Object.keys(groups)
-      .sort()
-      .map((letter) => ({
-        letter,
-        contacts: groups[letter],
-      }));
   }
 
   selectContact(contact: Contact) {
@@ -61,41 +37,6 @@ export class Contacts implements OnInit {
 
   deselectContact() {
     this.selectedContact = null;
-  }
-  
-  getInitials(contact: Contact): string {
-    return contact.firstname.charAt(0).toUpperCase();
-  }
-
-  colorPalette = [
-    '#FF7A00', // Orange
-    '#9327FF', // Purple
-    '#6E52FF', // Blue
-    '#FC71FF', // Pink
-    '#FFBB2B', // Yellow
-    '#1FD7C1', // Teal
-    '#462F8A', // Dark Purple
-    '#FF4646', // Red
-    '#00BEE8', // Light Blue
-    '#FF5EB3', // Light Pink
-    '#FF745E', // Coral
-    '#FFA35E', // Light Orange
-    '#FFC701', // Bright Yellow
-    '#0038FF', // Vivid Blue
-    '#C3FF2B', // Lime Green
-    '#FFE62B', // Bright Yellow
-  ];
-
-  getAvatarColor(contact: Contact): string {
-    let hash = 0;
-    const idString = String(contact.id);
-
-    for (let i = 0; i < idString.length; i++) {
-      hash = idString.charCodeAt(i) + ((hash << 5) - hash);
-    }
-
-    const index = Math.abs(hash) % this.colorPalette.length;
-    return this.colorPalette[index];
   }
 
   openAddModal(editContact?: Contact) {
@@ -149,8 +90,6 @@ export class Contacts implements OnInit {
       if (idx > -1) {
         this.contacts[idx] = { ...this.newContact } as Contact;
         this.selectedContact = this.contacts[idx];
-        this.sortContactsAlphabetically();
-        this.groupedContacts = this.groupContactsByLetter();
       }
       await this.reloadContacts();
       this.closeAddModal();
@@ -178,7 +117,6 @@ export class Contacts implements OnInit {
     await deleteDoc(contactRef);
     await this.reloadContacts();
     this.contacts = this.contacts.filter((c) => c.id !== contact.id);
-    this.groupedContacts = this.groupContactsByLetter();
     if (this.selectedContact?.id === contact.id) {
       this.selectedContact = null;
     }
@@ -186,8 +124,6 @@ export class Contacts implements OnInit {
 
   async reloadContacts() {
     this.contacts = await this.contactService.getAllContacts();
-    this.sortContactsAlphabetically();
-    this.groupedContacts = this.groupContactsByLetter();
   }
 
   openDeleteModalFromEdit() {

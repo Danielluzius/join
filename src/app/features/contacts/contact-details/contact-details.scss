@@ -1,0 +1,256 @@
+//Contact Details Container
+.contact-details-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background: transparent;
+  overflow: hidden;
+}
+
+//Header Section
+.contact-details-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding-top: 110px;
+  padding-left: 72px;
+  padding-right: 96px;
+  padding-bottom: 0;
+  background: transparent;
+}
+
+.default-content {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 0px;
+  gap: 30px;
+  width: 569px;
+  height: 73px;
+}
+
+.default-title {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0px;
+  gap: 30px;
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 61px;
+  line-height: 120%;
+  color: #000000;
+  margin: 0;
+}
+
+.default-separator {
+  width: 0px;
+  height: 59px;
+  border: 3px solid #29abe2;
+  flex: none;
+  order: 1;
+  flex-grow: 0;
+}
+
+.default-subtitle {
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 27px;
+  line-height: 120%;
+  color: #2a3647;
+  flex: none;
+  order: 2;
+  flex-grow: 0;
+}
+
+.header-left {
+  display: none;
+}
+
+.back-btn.mobile-only {
+  display: none;
+}
+
+.mobile-edit-btn {
+  display: none;
+}
+
+//Contact Details Section
+.contact-details {
+  flex: 1;
+  background: transparent;
+  padding: 0;
+  padding-top: 48px;
+  padding-left: 72px;
+  min-width: 300px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 21px;
+}
+
+.details-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0px;
+  gap: 54px;
+  width: auto;
+  margin-bottom: 0;
+}
+
+.header-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 8px;
+}
+
+.details-name {
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 47px;
+  line-height: 120%;
+  color: #000000;
+}
+
+.details-actions {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 16px;
+  position: relative;
+}
+
+.desktop-only {
+  display: flex;
+}
+
+//Action Buttons
+.icon-btn {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 0px;
+  gap: 8px;
+  background: none;
+  border: none;
+  color: #2a3647;
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 120%;
+  cursor: pointer;
+  transition: color 0.2s;
+  height: 24px;
+}
+
+.icon-btn:hover {
+  color: #29abe2;
+}
+
+.action-icon {
+  width: 24px;
+  height: 24px;
+  transition: filter 0.2s;
+}
+
+.icon-btn:hover .action-icon {
+  filter: brightness(0) saturate(100%) invert(64%) sepia(96%) saturate(1613%) hue-rotate(169deg)
+    brightness(95%) contrast(89%);
+}
+
+//Contact Information
+.contact-information-title {
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 120%;
+  color: #000000;
+  display: flex;
+  align-items: center;
+  width: auto;
+  height: 74px;
+  margin-top: 0;
+}
+
+.details-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 22px;
+  width: auto;
+}
+
+.info-item {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 15px;
+}
+
+.info-item strong {
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 120%;
+  color: #000000;
+  display: flex;
+  align-items: center;
+}
+
+.info-item a,
+.info-item span {
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 120%;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.info-item a {
+  color: #007cee;
+}
+
+.info-item span {
+  color: #000000;
+}
+
+//Avatar
+.avatar.big {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 0px;
+  gap: 10px;
+  width: 120px;
+  height: 120px;
+  background: #ffffff;
+  border: 3px solid #ffffff;
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 70px;
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 47px;
+  line-height: 120%;
+  color: #ffffff;
+  flex-shrink: 0;
+  margin-right: 0;
+}

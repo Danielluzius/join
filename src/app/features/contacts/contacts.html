@@ -1,95 +1,11 @@
 <div class="contacts-container" [class.contact-selected]="selectedContact !== null">
-  <div class="contacts-sidebar">
-    <div class="button-container">
-      <button (click)="openAddModal()" class="add-btn">
-        Add new contact
-        <img src="assets/add-contact-icon.png" alt="Add contact">
-      </button>
-    </div>
+  <app-contact-list [contacts]="contacts" [selectedContact]="selectedContact" (contactSelected)="selectContact($event)"
+    (addContactClicked)="openAddModal()">
+  </app-contact-list>
 
-    <div class="contacts-list">
-      @for (group of groupedContacts; track group.letter) {
-      <div class="letter-group">
-        <div class="letter-header">
-          <span class="letter">{{ group.letter }}</span>
-          <div class="letter-divider"></div>
-        </div>
-
-        @for (contact of group.contacts; track contact.id) {
-        <div class="contact-list-item" [class.selected]="contact === selectedContact" (click)="selectContact(contact)">
-          <span class="avatar" [style.background]="getAvatarColor(contact)">
-            {{ getInitials(contact) }}
-          </span>
-          <div class="contact-info">
-            <div class="name">{{ contact.firstname }} {{ contact.lastname }}</div>
-            <div class="email">{{ contact.email }}</div>
-          </div>
-        </div>
-        }
-      </div>
-      }
-    </div>
-    <button class="mobile-add-btn" (click)="openAddModal()">
-      <img src="assets/responsive-add-button.png" alt="Add contact">
-    </button>
-  </div>
-
-  <div class="contact-details-container">
-    <div class="contact-details-header">
-      <div class="header-left">
-        <h1 class="mobile-title">Contacts</h1>
-        <p class="mobile-subtitle">Better with a team</p>
-        <div class="mobile-divider"></div>
-      </div>
-      <button class="back-btn mobile-only" (click)="deselectContact()">
-        <img src="assets/responsive-back-button.png" alt="Back">
-      </button>
-      
-      <div class="default-content">
-        <h1 class="default-title">
-          Contacts
-          <span class="default-separator"></span>
-          <span class="default-subtitle">Better with a team</span>
-        </h1>
-      </div>
-    </div>
-
-    @if (selectedContact) {
-    <div class="contact-details">
-      <div class="details-header">
-        <span class="avatar big" [style.background]="getAvatarColor(selectedContact!)">{{
-          getInitials(selectedContact!) }}</span>
-        <div class="header-content">
-          <span class="details-name">{{ selectedContact!.firstname }} {{ selectedContact!.lastname }}</span>
-          <div class="details-actions desktop-only">
-            <button class="icon-btn edit-btn" (click)="openAddModal(selectedContact!)">
-              <img src="assets/edit.png" alt="Edit" class="action-icon" />
-              Edit
-            </button>
-            <button class="icon-btn delete-btn" (click)="openDeleteModal()">
-              <img src="assets/delete.png" alt="Delete" class="action-icon" />
-              Delete
-            </button>
-          </div>
-        </div>
-      </div>
-      <button class="mobile-edit-btn" (click)="openAddModal(selectedContact!)">
-        <img src="assets/responsive-edit-button.png" alt="Edit contact">
-      </button>
-      <div class="contact-information-title">Contact Information</div>
-      <div class="details-info">
-        <div class="info-item">
-          <strong>Email</strong>
-          <a href="mailto:{{selectedContact!.email}}">{{ selectedContact!.email }}</a>
-        </div>
-        <div class="info-item">
-          <strong>Phone</strong>
-          <span>{{ selectedContact!.phone }}</span>
-        </div>
-      </div>
-    </div>
-    }
-  </div>
+  <app-contact-details [selectedContact]="selectedContact" (editClicked)="openAddModal($event)"
+    (deleteClicked)="openDeleteModal()" (backClicked)="deselectContact()">
+  </app-contact-details>
 
   @if (showAddModal) {
   <div class="modal-overlay">
@@ -125,18 +41,18 @@
 
           <div class="modal-actions">
             <button type="button" class="secondary desktop-cancel" (click)="closeAddModal()">Cancel</button>
-          
-          @if (editMode) {
-          <button type="button" class="secondary mobile-delete" (click)="openDeleteModalFromEdit()">Delete</button>
-          } @else {
-          <button type="button" class="secondary mobile-cancel" (click)="closeAddModal()">Cancel</button>
-          }
-          
-          @if (editMode) {
-          <button type="button" class="primary" (click)="saveChanges()">Save ✓</button>
-          } @else {
-          <button type="submit" class="primary">Create contact ✓</button>
-          }
+
+            @if (editMode) {
+            <button type="button" class="secondary mobile-delete" (click)="openDeleteModalFromEdit()">Delete</button>
+            } @else {
+            <button type="button" class="secondary mobile-cancel" (click)="closeAddModal()">Cancel</button>
+            }
+
+            @if (editMode) {
+            <button type="button" class="primary" (click)="saveChanges()">Save ✓</button>
+            } @else {
+            <button type="submit" class="primary">Create contact ✓</button>
+            }
           </div>
         </form>
       </div>
