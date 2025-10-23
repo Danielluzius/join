@@ -18,7 +18,7 @@
   align-items: flex-start;
   justify-content: flex-start;
   padding-top: 110px;
-  padding-left: 72px;
+  padding-left: clamp(10px, 5vw, 72px);
   padding-right: 96px;
   padding-bottom: 0;
   background: transparent;
@@ -167,8 +167,7 @@
 }
 
 .icon-btn:hover .action-icon {
-  filter: brightness(0) saturate(100%) invert(64%) sepia(96%) saturate(1613%) hue-rotate(169deg)
-    brightness(95%) contrast(89%);
+  filter: brightness(0) saturate(100%) invert(64%) sepia(96%) saturate(1613%) hue-rotate(169deg) brightness(95%) contrast(89%);
 }
 
 .contact-information-title {
@@ -362,4 +361,32 @@
     height: 80px;
     font-size: 32px;
   }
+}
+
+.default-title {
+  font-size: clamp(2rem, 5vw, 61px); // war 61px
+}
+
+.default-subtitle {
+  font-size: clamp(1.1rem, 2.5vw, 27px); // war 27px
+}
+
+.details-name {
+  font-size: clamp(1.5rem, 4vw, 47px); // war 47px
+}
+
+.contact-information-title {
+  font-size: clamp(1rem, 2vw, 20px); // war 20px
+}
+
+.info-item strong,
+.info-item a,
+.info-item span {
+  font-size: clamp(0.9rem, 1.5vw, 16px); // war 16px
+}
+
+.avatar.big {
+  width: clamp(60px, 15vw, 120px); // war 120px
+  height: clamp(60px, 15vw, 120px);
+  font-size: clamp(1.5rem, 4vw, 47px); // war 47px
 }
