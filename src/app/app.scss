@@ -12,15 +12,15 @@
   background-color: #f6f7f8;
 }
 
-@media (max-width: 428px) {
+@media (max-width: 768px) {
   .main-content {
     margin-left: 0;
-    margin-top: 80px;    
-    margin-bottom: 70px; 
+    margin-top: 80px;
+    margin-bottom: 70px;
     height: calc(100vh - 150px);
   }
 
   .content-area {
-    overflow-y: auto; 
+    overflow-y: auto;
   }
 }

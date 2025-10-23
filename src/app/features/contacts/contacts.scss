@@ -5,6 +5,33 @@
   height: 100%;
 }
 
+@media (max-width: 768px) {
+  .contacts-container {
+    // Mobile: show only list by default
+    app-contact-list {
+      width: 100%;
+      flex: 1;
+    }
+
+    app-contact-details {
+      display: none;
+    }
+  }
+
+  .contacts-container.contact-selected {
+    // Mobile: when contact selected, hide list and show details
+    app-contact-list {
+      display: none;
+    }
+
+    app-contact-details {
+      display: flex;
+      width: 100%;
+      flex: 1;
+    }
+  }
+}
+
 .modal-overlay {
   position: fixed;
   inset: 0;

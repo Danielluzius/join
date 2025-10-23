@@ -191,3 +191,66 @@
   line-height: 120%;
   flex-shrink: 0;
 }
+
+@media (max-width: 768px) {
+  .contacts-sidebar {
+    width: 100%;
+    box-shadow: none;
+    align-items: stretch;
+    padding: 0;
+  }
+
+  .contacts-list {
+    align-items: stretch;
+    padding: 24px;
+    width: 100%;
+  }
+
+  .button-container {
+    display: none;
+  }
+
+  .mobile-add-btn {
+    display: flex;
+    position: fixed;
+    bottom: 90px;
+    right: 16px;
+    width: 60px;
+    height: 60px;
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    z-index: 100;
+
+    img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  .letter-group {
+    width: 100%;
+  }
+
+  .letter-header {
+    width: 100%;
+    padding: 17px 0px;
+  }
+
+  .letter {
+    padding-left: 36px;
+  }
+
+  .letter-divider {
+    width: 100%;
+
+    &::after {
+      width: 100%;
+    }
+  }
+
+  .contact-list-item {
+    width: 100%;
+  }
+}
