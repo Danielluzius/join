@@ -16,6 +16,7 @@ export class ContactDetails {
   @Output() backClicked = new EventEmitter<void>();
 
   showMobileOptionsOverlay = false;
+  
 
   @HostListener('window:resize', ['$event'])
   onResize(event: any) {
@@ -44,9 +45,13 @@ export class ContactDetails {
     this.backClicked.emit();
   }
 
-  getInitials(contact: Contact): string {
-    return contact.firstname.charAt(0).toUpperCase();
+  getInitials(contact: Partial<Contact> | null): string {
+    if (!contact) return '';
+    const firstInitial = contact.firstname?.charAt(0) || '';
+    const lastInitial = contact.lastname?.charAt(0) || '';
+    return (firstInitial + lastInitial).toUpperCase();
   }
+  
 
   colorPalette = [
     '#FF7A00',

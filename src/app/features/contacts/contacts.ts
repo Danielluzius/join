@@ -21,6 +21,7 @@ export class Contacts implements OnInit {
   showDeleteModal = false;
   newContact: Partial<Contact> = {};
   errorMessage = '';
+  showSuccess = false;
 
   private contactService = inject(ContactService);
   private firestore = inject(Firestore);
@@ -58,6 +59,13 @@ export class Contacts implements OnInit {
     this.errorMessage = '';
   }
 
+  showSuccessAnimation() {
+    this.showSuccess = true;
+    setTimeout(() => {
+      this.showSuccess = false;
+    }, 2000);
+  }
+
   async handleCreateContact(contactData: Partial<Contact>) {
     if (!contactData.firstname || !contactData.email || !contactData.phone) {
       this.errorMessage = 'All Inputs are required.';
@@ -71,6 +79,7 @@ export class Contacts implements OnInit {
     this.selectedContact = contact;
     await this.reloadContacts();
     this.closeAddModal();
+    this.showSuccessAnimation();
   }
 
   async handleSaveContact(contactData: Partial<Contact>) {

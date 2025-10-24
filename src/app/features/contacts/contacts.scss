@@ -5,8 +5,82 @@
   height: 100%;
 }
 
+.success-toast {
+  position: fixed;
+  bottom: 10%;
+  right: 20%;
+  transform: translateY(-50%);
+  z-index: 2000;
+  background: transparent;
+  padding: 0;
+  pointer-events: none;
+  animation: slideIn 0.5s ease-out forwards;
+}
+
+.success-toast img {
+  width: 320px;
+  height: auto;
+  display: block;
+}
+
+
+@keyframes slideIn {
+  from {
+    right: -400px; 
+  }
+  to {
+    right: 20%;
+  }
+}
+
+.success-toast[ng-reflect-ng-if="false"] {
+  animation: slideOut 0.5s ease-in forwards;
+}
+
+@keyframes slideOut {
+  from {
+    right: 20%;
+  }
+  to {
+    right: -400px;
+  }
+}
+
+@media (max-width: 550px) {
+  .success-toast {
+    bottom: -400px;
+    right: 50%;
+    transform: translateX(50%);
+    animation: slideInFromBottom 0.5s ease-out forwards;
+  }
+
+  @keyframes slideInFromBottom {
+    from {
+      bottom: -400px; 
+    }
+    to {
+      bottom: 10%; 
+    }
+  }
+
+  .success-toast[ng-reflect-ng-if="false"] {
+    animation: slideOutToBottom 0.5s ease-in forwards;
+  }
+
+  @keyframes slideOutToBottom {
+    from {
+      bottom: 10%;
+    }
+    to {
+      bottom: -400px;
+    }
+  }
+}
+
+
 @media (max-width: 600px) {
   .contacts-container {
+
     // Mobile: show only list by default
     app-contact-list {
       width: 100%;
@@ -19,6 +93,7 @@
   }
 
   .contacts-container.contact-selected {
+
     // Mobile: when contact selected, hide list and show details
     app-contact-list {
       display: none;
