@@ -338,6 +338,30 @@
     width: 60px;
     height: 60px;
     z-index: 100;
+    display: flex;
+    background: none; 
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+    
+    img {
+      width: 100%;
+      height: 100%;
+    }
+  
+    &:hover,
+    &.active {
+      transform: scale(1.05);
+      
+      img {
+        content: url('/responsive-edit-button-hovered.png');
+      }
+    }
+  
+    &:active {
+      transform: scale(0.95);
+    }
   }
 
   .contact-details {
@@ -408,6 +432,7 @@
     inset: 0;
     background: rgba(0, 0, 0, 0);
     z-index: 101;
+    animation: fadeIn 0.2s ease-in-out;
   }
 
   .mobile-options-menu {
@@ -421,7 +446,29 @@
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 20px 20px 0px 20px;
     position: fixed;
-    bottom: 150px;
-    right: 76px;
+    bottom: 90px;
+    right: 16px;
+    z-index: 102;
+    animation: slideInFromRight 0.3s ease-out;
+  }
+
+  @keyframes fadeIn {
+    from {
+      background: rgba(0, 0, 0, 0);
+    }
+    to {
+      background: rgba(0, 0, 0, 0.3);
+    }
+  }
+
+  @keyframes slideInFromRight {
+    from {
+      opacity: 0;
+      transform: translateX(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
   }
 }
