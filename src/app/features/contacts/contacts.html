@@ -15,8 +15,10 @@
   @if (showDeleteModal) {
   <div class="modal-overlay">
     <div class="modal delete-modal">
-      <div class="delete-modal-content">
+      <div class="delete-modal-header">
         <h3>Delete contact</h3>
+      </div>
+      <div class="delete-modal-content">
         <p>
           Do you really want to delete the contact:<br>
           <strong>{{ selectedContact?.firstname }} {{ selectedContact?.lastname }}</strong>
