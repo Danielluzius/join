@@ -12,7 +12,7 @@
   }
 
   <app-contact-form [showModal]="showAddModal" [editMode]="editMode" [contact]="newContact"
-    [errorMessage]="errorMessage" (closeModal)="closeAddModal()" (createContact)="handleCreateContact($event)"
+    (closeModal)="closeAddModal()" (createContact)="handleCreateContact($event)"
     (saveContact)="handleSaveContact($event)" (deleteFromEdit)="openDeleteModalFromEdit()">
   </app-contact-form>
 

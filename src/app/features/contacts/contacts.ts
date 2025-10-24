@@ -1,4 +1,4 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnInit, inject, HostListener } from '@angular/core';
 import { ContactService } from '../../core/services/db-contact-service';
 import { ContactHelper, Contact } from '../../core/interfaces/db-contact-interface';
 import { Firestore, collection, addDoc, doc, updateDoc, deleteDoc } from '@angular/fire/firestore';
@@ -20,7 +20,6 @@ export class Contacts implements OnInit {
   showAddModal = false;
   showDeleteModal = false;
   newContact: Partial<Contact> = {};
-  errorMessage = '';
   showSuccess = false;
   isLoading = true;
 
@@ -52,7 +51,6 @@ export class Contacts implements OnInit {
 
   openAddModal(editContact?: Contact) {
     this.showAddModal = true;
-    this.errorMessage = '';
     if (editContact) {
       this.editMode = true;
       this.newContact = { ...editContact };
@@ -66,7 +64,6 @@ export class Contacts implements OnInit {
     this.showAddModal = false;
     this.editMode = false;
     this.newContact = {};
-    this.errorMessage = '';
   }
 
   showSuccessAnimation() {
@@ -77,11 +74,7 @@ export class Contacts implements OnInit {
   }
 
   async handleCreateContact(contactData: Partial<Contact>) {
-    if (!contactData.firstname || !contactData.email || !contactData.phone) {
-      this.errorMessage = 'All Inputs are required.';
-      return;
-    }
-    this.errorMessage = '';
+    // Validierung wird jetzt in der Form-Component gemacht
     const contactsRef = collection(this.firestore, 'contacts');
     const docRef = await addDoc(contactsRef, contactData);
     const contact: Contact = { id: docRef.id, ...(contactData as Contact) };
@@ -93,11 +86,7 @@ export class Contacts implements OnInit {
   }
 
   async handleSaveContact(contactData: Partial<Contact>) {
-    if (!contactData.firstname || !contactData.email || !contactData.phone) {
-      this.errorMessage = 'All Inputs are required.';
-      return;
-    }
-    this.errorMessage = '';
+    // Validierung wird jetzt in der Form-Component gemacht
     if (contactData.id) {
       const contactRef = doc(this.firestore, 'contacts', contactData.id);
       await updateDoc(contactRef, {
@@ -149,5 +138,20 @@ export class Contacts implements OnInit {
   openDeleteModalFromEdit() {
     this.closeAddModal();
     this.openDeleteModal();
+  }
+
+  @HostListener('document:keydown.escape')
+  onEscapeKey() {
+    if (this.showDeleteModal) {
+      this.closeDeleteModal();
+    }
+  }
+
+  onDeleteOverlayClick(event: MouseEvent) {
+    this.closeDeleteModal();
+  }
+
+  onDeleteModalClick(event: MouseEvent) {
+    event.stopPropagation();
   }
 }

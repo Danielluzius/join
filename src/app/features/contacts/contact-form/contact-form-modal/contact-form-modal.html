@@ -1,6 +1,6 @@
 @if (showModal) {
-<div class="modal-overlay">
-    <div class="modal">
+<div class="modal-overlay" (click)="onOverlayClick($event)">
+    <div class="modal" (click)="onModalClick($event)">
         <div class="modal-left">
             <div class="left-text">
                 <img class="join-img" src="assets/header-join-icon-vector.png" alt="">

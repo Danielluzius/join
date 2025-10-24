@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter, OnChanges } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnChanges, ViewChild } from '@angular/core';
 import { Contact } from '../../../core/interfaces/db-contact-interface';
 import { ContactAvatar } from './contact-avatar/contact-avatar';
 import { ContactFormInputs } from './contact-form-inputs/contact-form-inputs';
@@ -23,6 +23,8 @@ export class ContactForm implements OnChanges {
   @Output() saveContact = new EventEmitter<Partial<Contact>>();
   @Output() deleteFromEdit = new EventEmitter<void>();
 
+  @ViewChild(ContactFormInputs) contactFormInputs!: ContactFormInputs;
+
   formData: Partial<Contact> = {};
 
   ngOnChanges() {
@@ -38,6 +40,9 @@ export class ContactForm implements OnChanges {
   }
 
   onSubmit() {
+    if (this.contactFormInputs && !this.contactFormInputs.validateAll()) {
+      return; 
+    }
     if (this.editMode) {
       this.saveContact.emit(this.formData);
     } else {
@@ -47,5 +52,9 @@ export class ContactForm implements OnChanges {
 
   onDeleteFromEdit() {
     this.deleteFromEdit.emit();
+  }
+
+  updateFormData(data: Partial<Contact>) {
+    this.formData = data;
   }
 }

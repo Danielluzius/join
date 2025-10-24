@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, HostListener } from '@angular/core';
 
 @Component({
   selector: 'app-contact-form-modal',
@@ -12,7 +12,22 @@ export class ContactFormModal {
   @Input() editMode = false;
   @Output() closeModal = new EventEmitter<void>();
 
+  @HostListener('document:keydown.escape')
+  onEscapeKey() {
+    if (this.showModal) {
+      this.onClose();
+    }
+  }
+
   onClose() {
     this.closeModal.emit();
+  }
+
+  onOverlayClick(event: MouseEvent) {
+    this.onClose();
+  }
+
+  onModalClick(event: MouseEvent) {
+    event.stopPropagation();
   }
 }
