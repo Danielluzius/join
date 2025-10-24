@@ -44,10 +44,17 @@ export class ContactDetails {
     this.backClicked.emit();
   }
 
-  getInitials(contact: Partial<Contact> | null): string {
-    if (!contact) return '';
-    const firstInitial = contact.firstname?.charAt(0) || '';
-    const lastInitial = contact.lastname?.charAt(0) || '';
+  getInitials(contact: Contact): string {
+    if (!contact || !contact.firstname) return '';
+    
+    const nameParts = contact.firstname.trim().split(' ');
+    
+    if (nameParts.length === 1) {
+      return nameParts[0].charAt(0).toUpperCase();
+    }
+    
+    const firstInitial = nameParts[0].charAt(0);
+    const lastInitial = nameParts[nameParts.length - 1].charAt(0);
     return (firstInitial + lastInitial).toUpperCase();
   }
 
