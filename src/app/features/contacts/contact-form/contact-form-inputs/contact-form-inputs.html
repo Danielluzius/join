@@ -1,0 +1,16 @@
+<div class="input-wrapper">
+    <input type="text" placeholder="Name" [(ngModel)]="formData.firstname" name="firstname"
+        (ngModelChange)="updateFormData()" required />
+    <div class="input-divider"></div>
+    <img src="assets/person-icon.png" alt="Person" class="input-icon" />
+</div>
+<div class="input-wrapper">
+    <input type="email" placeholder="Email" [(ngModel)]="formData.email" name="email" (ngModelChange)="updateFormData()"
+        required />
+    <img src="assets/mail-icon.png" alt="Mail" class="input-icon" />
+</div>
+<div class="input-wrapper">
+    <input type="text" placeholder="Phone" [(ngModel)]="formData.phone" name="phone" (ngModelChange)="updateFormData()"
+        required />
+    <img src="assets/phone-icon.png" alt="Phone" class="input-icon" />
+</div>

@@ -1,0 +1,20 @@
+@if (showModal) {
+<div class="modal-overlay">
+    <div class="modal">
+        <div class="modal-left">
+            <div class="left-text">
+                <img class="join-img" src="assets/header-join-icon-vector.png" alt="">
+                <h2>{{ editMode ? 'Edit contact' : 'Add contact' }}</h2>
+                @if (!editMode) {
+                <p>Tasks are better with a team!</p>
+                }
+                <div class="blue-line"></div>
+            </div>
+        </div>
+        <div class="modal-right">
+            <button class="close-btn" (click)="onClose()">×</button>
+            <ng-content></ng-content>
+        </div>
+    </div>
+</div>
+}
