@@ -54,7 +54,17 @@ export class ContactList implements OnChanges {
   }
 
   getInitials(contact: Contact): string {
-    return contact.firstname.charAt(0).toUpperCase();
+    if (!contact || !contact.firstname) return '';
+    
+    const nameParts = contact.firstname.trim().split(' ');
+    
+    if (nameParts.length === 1) {
+      return nameParts[0].charAt(0).toUpperCase();
+    }
+    
+    const firstInitial = nameParts[0].charAt(0);
+    const lastInitial = nameParts[nameParts.length - 1].charAt(0);
+    return (firstInitial + lastInitial).toUpperCase();
   }
 
   colorPalette = [
