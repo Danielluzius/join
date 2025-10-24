@@ -18,11 +18,5 @@ export class App implements OnInit {
 
   async ngOnInit() {
     this.contacts = await this.contactService.getAllContacts();
-
-    // Beispielcode um die email des kontaktes "0" auszugeben
-    if (this.contacts.length > 0) {
-      console.log(ContactHelper.getEmail(this.contacts[0]));
-    }
-    //--------------------------------------------------------
   }
 }
