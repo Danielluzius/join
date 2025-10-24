@@ -16,6 +16,7 @@ export class ContactDetails {
   @Output() backClicked = new EventEmitter<void>();
 
   showMobileOptionsOverlay = false;
+  
 
   @HostListener('window:resize', ['$event'])
   onResize(event: any) {

@@ -12,6 +12,12 @@
     (saveContact)="handleSaveContact($event)" (deleteFromEdit)="openDeleteModalFromEdit()">
   </app-contact-form>
 
+  @if (showSuccess) {
+  <div class="success-toast">
+    <img src="assets/sucsess.png" alt="Success" />
+  </div>
+  }
+
   @if (showDeleteModal) {
   <div class="modal-overlay">
     <div class="modal delete-modal">
