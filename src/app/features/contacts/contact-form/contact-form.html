@@ -7,7 +7,7 @@
             <div class="error-message">{{ errorMessage }}</div>
             }
 
-            <app-contact-form-inputs [(formData)]="formData"></app-contact-form-inputs>
+            <app-contact-form-inputs [(ngModel)]="formData" name="contactInputs"></app-contact-form-inputs>
 
             <div class="modal-actions">
                 @if (editMode) {

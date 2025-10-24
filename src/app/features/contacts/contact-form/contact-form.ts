@@ -3,10 +3,11 @@ import { Contact } from '../../../core/interfaces/db-contact-interface';
 import { ContactAvatar } from './contact-avatar/contact-avatar';
 import { ContactFormInputs } from './contact-form-inputs/contact-form-inputs';
 import { ContactFormModal } from './contact-form-modal/contact-form-modal';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-contact-form',
-  imports: [ContactAvatar, ContactFormInputs, ContactFormModal],
+  imports: [ContactAvatar, ContactFormInputs, ContactFormModal, FormsModule],
   templateUrl: './contact-form.html',
   styleUrl: './contact-form.scss',
   standalone: true,

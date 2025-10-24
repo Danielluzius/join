@@ -1,5 +1,5 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { Component, Input, Output, EventEmitter, forwardRef } from '@angular/core';
+import { FormsModule, ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { Contact } from '../../../../core/interfaces/db-contact-interface';
 
 @Component({
@@ -8,12 +8,38 @@ import { Contact } from '../../../../core/interfaces/db-contact-interface';
   templateUrl: './contact-form-inputs.html',
   styleUrl: './contact-form-inputs.scss',
   standalone: true,
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => ContactFormInputs),
+      multi: true,
+    },
+  ],
 })
-export class ContactFormInputs {
-  @Input() formData: Partial<Contact> = {};
-  @Output() formDataChange = new EventEmitter<Partial<Contact>>();
+export class ContactFormInputs implements ControlValueAccessor {
+  formData: Partial<Contact> = {};
+
+  private onChange: (value: Partial<Contact>) => void = () => {};
+  private onTouched: () => void = () => {};
+
+  writeValue(value: Partial<Contact>): void {
+    if (value) {
+      this.formData = { ...value };
+    } else {
+      this.formData = {};
+    }
+  }
+
+  registerOnChange(fn: (value: Partial<Contact>) => void): void {
+    this.onChange = fn;
+  }
+
+  registerOnTouched(fn: () => void): void {
+    this.onTouched = fn;
+  }
 
   updateFormData() {
-    this.formDataChange.emit(this.formData);
+    this.onChange(this.formData);
+    this.onTouched();
   }
 }
