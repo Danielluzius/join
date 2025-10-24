@@ -273,6 +273,12 @@
     display: none;
   }
 
+  .details-header {
+    flex-direction: row; 
+    gap: 16px;
+    align-items: center;  
+  }
+
   .header-left {
     display: flex;
     flex-direction: column;
