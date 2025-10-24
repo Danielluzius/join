@@ -1,0 +1,108 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.input-wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 422px;
+  height: 50px;
+}
+
+.input-wrapper input {
+  width: 422px;
+  height: 50px;
+  padding: 13px 50px 13px 21px;
+  box-sizing: border-box;
+  border-radius: 10px;
+  border: 1px solid #d1d1d1;
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 120%;
+  color: #000000;
+  background: #ffffff;
+}
+
+.input-wrapper input::placeholder {
+  color: #d1d1d1;
+}
+
+.input-wrapper input:focus {
+  outline: none;
+  border-color: #29abe2;
+}
+
+.input-icon {
+  position: absolute;
+  right: 21px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 24px;
+  height: 24px;
+  pointer-events: none;
+  filter: brightness(0) saturate(100%) invert(66%) sepia(0%) saturate(0%) hue-rotate(175deg)
+    brightness(94%) contrast(91%);
+}
+
+.input-divider {
+  display: none;
+}
+
+@media (max-width: 1280px) {
+  :host {
+    gap: 28px;
+  }
+
+  .input-wrapper {
+    width: 100%;
+  }
+
+  .input-wrapper input {
+    width: 100%;
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 1024px) {
+  :host {
+    gap: 24px;
+  }
+
+  .input-wrapper {
+    height: 48px;
+  }
+
+  .input-wrapper input {
+    height: 48px;
+    padding: 12px 48px 12px 18px;
+    font-size: 17px;
+  }
+
+  .input-icon {
+    right: 18px;
+    width: 22px;
+    height: 22px;
+  }
+}
+
+@media (max-width: 900px) {
+  :host {
+    gap: 12px;
+  }
+
+  .input-wrapper {
+    max-width: 364px;
+    height: 41px;
+  }
+
+  .input-wrapper input {
+    height: 41px;
+    padding: 13px 21px;
+    font-size: 20px;
+  }
+}

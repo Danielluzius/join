@@ -1,10 +1,12 @@
 import { Component, Input, Output, EventEmitter, OnChanges } from '@angular/core';
 import { Contact } from '../../../core/interfaces/db-contact-interface';
-import { FormsModule } from '@angular/forms';
+import { ContactAvatar } from './contact-avatar/contact-avatar';
+import { ContactFormInputs } from './contact-form-inputs/contact-form-inputs';
+import { ContactFormModal } from './contact-form-modal/contact-form-modal';
 
 @Component({
   selector: 'app-contact-form',
-  imports: [FormsModule],
+  imports: [ContactAvatar, ContactFormInputs, ContactFormModal],
   templateUrl: './contact-form.html',
   styleUrl: './contact-form.scss',
   standalone: true,
@@ -44,23 +46,5 @@ export class ContactForm implements OnChanges {
 
   onDeleteFromEdit() {
     this.deleteFromEdit.emit();
-  }
-
-  getInitials(contact: Partial<Contact> | null): string {
-    if (!contact) return '';
-    const firstInitial = contact.firstname?.charAt(0) || '';
-    const lastInitial = contact.lastname?.charAt(0) || '';
-    return (firstInitial + lastInitial).toUpperCase();
-  }
-  
-  getAvatarColor(contact: Partial<Contact> | null): string {
-    if (!contact) return '#FF6B6B';
-    const colors = [
-      '#FF6B6B', '#4ECDC4', '#45B7D1', '#FFA07A', 
-      '#98D8C8', '#F7DC6F', '#BB8FCE', '#85C1E2'
-    ];
-    const name = (contact.firstname || '') + (contact.lastname || '');
-    const index = name.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
-    return colors[index % colors.length];
   }
 }

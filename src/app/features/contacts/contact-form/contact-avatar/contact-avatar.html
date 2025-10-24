@@ -1,0 +1,11 @@
+<div class="avatar-container">
+    @if (editMode && contact) {
+    <span class="avatar" [style.background]="getAvatarColor(contact)">
+        {{ getInitials(contact) }}
+    </span>
+    } @else {
+    <div class="avatar no-profile">
+        <img src="assets/responsive-noprofile-pic.png" alt="No profile picture">
+    </div>
+    }
+</div>
