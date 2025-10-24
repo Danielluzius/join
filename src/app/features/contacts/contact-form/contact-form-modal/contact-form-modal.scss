@@ -121,7 +121,7 @@
   background: none;
   border: none;
   font-size: 24px;
-  color: #2a3647;
+  color: #000000;
   cursor: pointer;
   z-index: 20;
   width: 32px;
@@ -134,11 +134,13 @@
 }
 
 .close-btn:hover {
-  background: rgba(42, 54, 71, 0.08);
+  background: #29abe2;
+  color: #fff;
 }
 
 .close-btn:active {
-  background: rgba(42, 54, 71, 0.16);
+  background: #29abe2;
+  color: #fff;
 }
 
 @media (max-width: 1280px) {
