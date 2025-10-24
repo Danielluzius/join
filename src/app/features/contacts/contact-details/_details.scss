@@ -1,0 +1,134 @@
+.contact-details {
+  flex: 1;
+  background: transparent;
+  padding: clamp(16px, 4vh, 48px) 0 0 72px;
+  min-width: 300px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(12px, 2vh, 21px);
+
+  animation: slideInFromRight 0.3s ease-out;
+}
+
+@keyframes slideInFromRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.details-header {
+  display: flex;
+  gap: clamp(24px, 5vh, 54px);
+}
+
+.header-content {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(4px, 1vh, 8px);
+}
+
+.details-name {
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: 47px;
+  line-height: 120%;
+  color: #000000;
+}
+
+.details-actions {
+  display: flex;
+  gap: 16px;
+  position: relative;
+}
+
+.desktop-only {
+  display: flex;
+}
+
+.icon-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  background: none;
+  border: none;
+  color: #2a3647;
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 120%;
+  cursor: pointer;
+  transition: color 0.2s;
+  height: 24px;
+
+  &:hover {
+    color: #29abe2;
+    .action-icon {
+      filter: brightness(0) saturate(100%) invert(64%) sepia(96%) saturate(1613%) hue-rotate(169deg)
+        brightness(95%) contrast(89%);
+    }
+  }
+}
+
+.action-icon {
+  width: 24px;
+  height: 24px;
+  transition: filter 0.2s;
+}
+
+.contact-information-title {
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 120%;
+  color: #000000;
+  display: flex;
+  align-items: center;
+  height: clamp(40px, 8vh, 74px);
+}
+
+.details-info {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(12px, 2.5vh, 22px);
+}
+
+.info-item {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(8px, 1.5vh, 15px);
+
+  strong {
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 120%;
+    color: #000000;
+    display: flex;
+    align-items: center;
+  }
+
+  a,
+  span {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 120%;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+  }
+
+  a {
+    color: #007cee;
+  }
+  span {
+    color: #000000;
+  }
+}

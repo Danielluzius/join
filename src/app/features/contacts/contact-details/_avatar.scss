@@ -1,0 +1,17 @@
+.avatar.big {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 120px;
+  height: 120px;
+  background: #ffffff;
+  border: 3px solid #ffffff;
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 70px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: 47px;
+  line-height: 120%;
+  color: #ffffff;
+  flex-shrink: 0;
+}

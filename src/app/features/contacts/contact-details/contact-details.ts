@@ -16,7 +16,6 @@ export class ContactDetails {
   @Output() backClicked = new EventEmitter<void>();
 
   showMobileOptionsOverlay = false;
-  
 
   @HostListener('window:resize', ['$event'])
   onResize(event: any) {
@@ -51,7 +50,6 @@ export class ContactDetails {
     const lastInitial = contact.lastname?.charAt(0) || '';
     return (firstInitial + lastInitial).toUpperCase();
   }
-  
 
   colorPalette = [
     '#FF7A00',

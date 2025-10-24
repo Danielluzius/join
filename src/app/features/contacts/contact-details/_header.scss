@@ -1,0 +1,46 @@
+.contact-details-header {
+  display: flex;
+  align-items: flex-start;
+  padding: clamp(16px, 8vh, 110px) 96px 0 72px;
+  background: transparent;
+}
+
+.default-content {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  width: 569px;
+  height: 73px;
+}
+
+.default-title {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 61px;
+  line-height: 120%;
+  color: #000000;
+  margin: 0;
+}
+
+.default-separator {
+  width: 0;
+  height: 59px;
+  border: 3px solid #29abe2;
+}
+
+.default-subtitle {
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  font-size: 27px;
+  line-height: 120%;
+  color: #2a3647;
+}
+
+.header-left,
+.back-btn.mobile-only,
+.mobile-edit-btn {
+  display: none;
+}
