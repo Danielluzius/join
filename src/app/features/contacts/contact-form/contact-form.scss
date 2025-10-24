@@ -188,3 +188,17 @@
     padding: 0 12px;
   }
 }
+
+@media (max-width: 900px) and (max-height: 700px) {
+  .form-container {
+    top: 350px;
+  }
+
+  .form-container form {
+    gap: 8px;
+  }
+
+  .modal-actions {
+    margin-top: 16px;
+  }
+}

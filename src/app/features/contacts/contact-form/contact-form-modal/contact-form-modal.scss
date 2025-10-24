@@ -249,3 +249,14 @@
     min-width: 320px;
   }
 }
+
+@media (max-width: 900px) and (max-height: 700px) {
+  .modal {
+    height: 660px;
+  }
+
+  .modal-left {
+    height: 280px;
+    padding: 50px 24px 40px;
+  }
+}

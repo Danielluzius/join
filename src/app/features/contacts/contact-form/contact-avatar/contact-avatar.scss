@@ -68,3 +68,15 @@
     height: 120px;
   }
 }
+
+@media (max-width: 900px) and (max-height: 700px) {
+  .avatar-container {
+    top: 221px;
+  }
+
+  .avatar-container .avatar {
+    width: 100px;
+    height: 100px;
+    font-size: 38px;
+  }
+}
