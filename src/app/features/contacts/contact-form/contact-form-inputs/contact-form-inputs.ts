@@ -42,4 +42,11 @@ export class ContactFormInputs implements ControlValueAccessor {
     this.onChange(this.formData);
     this.onTouched();
   }
+
+  onPhoneInput(event: Event) {
+    const input = event.target as HTMLInputElement;
+    input.value = input.value.replace(/[^0-9+\s\-()]/g, '');
+    this.formData.phone = input.value;
+    this.updateFormData();
+  }
 }

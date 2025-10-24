@@ -10,7 +10,7 @@
     <img src="assets/mail-icon.png" alt="Mail" class="input-icon" />
 </div>
 <div class="input-wrapper">
-    <input type="text" placeholder="Phone" [(ngModel)]="formData.phone" name="phone" (ngModelChange)="updateFormData()"
+    <input type="tel" placeholder="Phone" [(ngModel)]="formData.phone" name="phone" (input)="onPhoneInput($event)"
         required />
     <img src="assets/phone-icon.png" alt="Phone" class="input-icon" />
 </div>
