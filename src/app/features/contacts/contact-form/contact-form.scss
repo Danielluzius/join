@@ -46,8 +46,11 @@
   background: #2a3647;
   color: #ffffff;
   border-radius: 10px;
+  border: none;
   font-weight: 700;
   font-size: 19px;
+  box-sizing: border-box;
+  transition: all 0.2s ease;
 }
 
 .modal-actions .primary .check-icon {
@@ -58,31 +61,44 @@
 }
 
 .modal-actions .primary:hover {
-  background: #1a2332;
+  background: #29abe2;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 }
 
 .modal-actions .primary:active {
   background: #091931;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+}
+
+.modal-actions .primary.save-btn {
+  min-width: 120px;
 }
 
 .modal-actions .secondary {
-  min-width: 130px;
-  height: 49px;
-  padding: 13px 24px;
+  min-width: 99px;
+  height: 48px;
+  padding: 15px 24px;
+  gap: 10px;
   background: #ffffff;
   color: #2a3647;
-  border: 1px solid #2a3647;
+  border: 2px solid #2a3647;
   border-radius: 8px;
   font-weight: 400;
-  font-size: 19px;
+  font-size: 16px;
+  box-sizing: border-box;
+  transition: all 0.2s ease;
 }
 
 .modal-actions .secondary:hover {
-  background: rgba(42, 54, 71, 0.08);
+  border-color: #29abe2;
+  color: #29abe2;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 }
 
 .modal-actions .secondary:active {
-  background: rgba(42, 54, 71, 0.16);
+  border-color: #091931;
+  color: #091931;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 }
 
 @media (max-width: 1280px) {
