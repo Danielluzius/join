@@ -12,7 +12,7 @@ export class ContactAvatar {
   @Input() contact: Partial<Contact> | null = null;
   @Input() editMode = false;
 
-  getInitials(contact: Contact): string {
+  getInitials(contact: Partial<Contact>): string {
     if (!contact || !contact.firstname) return '';
     
     const nameParts = contact.firstname.trim().split(' ');
