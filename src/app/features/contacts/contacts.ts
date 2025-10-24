@@ -22,14 +22,24 @@ export class Contacts implements OnInit {
   newContact: Partial<Contact> = {};
   errorMessage = '';
   showSuccess = false;
+  isLoading = true;
 
   private contactService = inject(ContactService);
   private firestore = inject(Firestore);
 
   editMode = false;
 
-  async ngOnInit() {
-    this.contacts = await this.contactService.getAllContacts();
+  ngOnInit() {
+    this.loadContacts();
+  }
+
+  async loadContacts() {
+    this.isLoading = true;
+    try {
+      this.contacts = await this.contactService.getAllContacts();
+    } finally {
+      this.isLoading = false;
+    }
   }
 
   selectContact(contact: Contact) {

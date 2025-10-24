@@ -1,4 +1,7 @@
 <div class="contacts-container" [class.contact-selected]="selectedContact !== null">
+  @if (isLoading) {
+  <div class="loading-spinner">Loading contacts...</div>
+  } @else {
   <app-contact-list [contacts]="contacts" [selectedContact]="selectedContact" (contactSelected)="selectContact($event)"
     (addContactClicked)="openAddModal()">
   </app-contact-list>
@@ -6,6 +9,7 @@
   <app-contact-details [selectedContact]="selectedContact" (editClicked)="openAddModal($event)"
     (deleteClicked)="openDeleteModal()" (backClicked)="deselectContact()">
   </app-contact-details>
+  }
 
   <app-contact-form [showModal]="showAddModal" [editMode]="editMode" [contact]="newContact"
     [errorMessage]="errorMessage" (closeModal)="closeAddModal()" (createContact)="handleCreateContact($event)"
